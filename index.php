@@ -7,7 +7,7 @@ $cemail = $_SESSION['cemail'];
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; APanel</title>
+    <title>Barkley - Signin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
