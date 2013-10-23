@@ -21,7 +21,7 @@ $cemail = $_SESSION['cemail'];
         padding-bottom: 40px;
         background-color: #FFF;
       }
-      </style>
+    </style>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
