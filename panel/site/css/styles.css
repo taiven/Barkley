@@ -1,0 +1,279 @@
+/*--------------------------------
+Project Name: Developer
+Author: Wubcrate
+http://getbootstrap.com/css/#overview
+@media (max-width: @screen-phone-max) { ... }
+@media (min-width: @screen-sm) and (max-width: @screen-sm-max) { ... }
+@media (min-width: @screen-md) and (max-width: @screen-md-max) { ... }
+@media (min-width: @screen-lg) { ... }
+
+Example Media Query
+@media (min-width: @screen-lg) { 									Step 1. Declare your media query.
+
+	body{															Step 2. Add Styles. Add styles like you normally would without having the media query.
+		color: #111;														Remember that you don't need to redefine all attributes if its already defined.
+		background: #FFF;													Just add the ones you are changing or have been changed. Make sure its within the media query.
+		}															NOTE: DO NOT DELETE WHATS OUTSIDE THE MEDIA QUERY.
+		a{															Step 3. Make sure within the brackets of the @media(HERE) you put in the appropriate information
+		text-decoration:none;												so that the screen will catch it. Its just explaining the screen size between width & height
+		}																	basically the resolution of the screen.
+		a:hover, a:focus {											
+		text-decoration: none;
+		}
+		.version{
+			color: #579AFF;
+			font-weight:300;
+			font-style:italic;
+			font:Georgia;
+			font-size:9px;
+			font-variant:small-caps;
+			text-decoration:underline;
+			margin-right: 10px;
+			}
+			
+		.info_panel{
+		width: 100%;
+		height:200px;
+		border-radius: 0;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		margin-top: -9px;
+		padding: 30px;
+		background:#006AA5;
+		border-bottom: 1px solid #888;
+		}
+
+} Declare your media query.
+----------------------------------*/
+	/* Global */
+	body{
+	color: #111;
+	background: #FFF;
+	}
+	a{
+	text-decoration:none;
+	}
+	a:hover, a:focus {
+	text-decoration: none;
+	}
+	/* Meta */
+ 	.version{
+		color: #579AFF;
+		font-weight:300;
+		font-style:italic;
+		font:Georgia;
+		font-size:9px;
+		font-variant:small-caps;
+		text-decoration:underline;
+		margin-right: 10px;
+		}
+	/* Dashboard */
+		
+	.info_panel{
+	width: 100%;
+	height:200px;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	margin-top: -9px;
+	padding: 30px;
+	background:#006AA5;
+	border-bottom: 1px solid #888;
+	}
+	.info-col{
+	width:50%;
+	}
+	.info{
+	background: rgba(51, 51, 51,0.6);
+	height: 100px;
+	margin-top: 17%;
+	}
+	.info1{
+	background: #333;
+	height: 199px;
+	margin-top: -30px;
+	margin-left: -1%;
+	border-top: 1px solid #222;
+	border-left: 1px solid #222;
+	border-right: 1px solid #222;
+	border-radius: 0;
+	padding: 1px 10px;
+	}
+	.info2{
+	background: url('../img/skyline.jpg') no-repeat;
+	background-size: 100% 176%;
+	height: 199px;
+	margin-top: -30px;
+	border-left: 1px solid #111;
+	border-right: 1px solid #111;
+	border-top: 1px solid #111;
+	border-radius: 0;
+	overflow: hidden;
+	}
+	.navbar-inverse .navbar-inner {
+	background-color: #FFF;
+	}
+	.navbar-default .navbar-nav>li>a {
+	color: #0092CA;
+	/*text-shadow: -1px 0px #006FFD;*/
+	}
+	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+	color: #006AA5;
+	background-color: #999;
+	}
+	.form-control {
+	color: #428bca;
+	background-color: #222;
+	border-radius: 4px;
+	width: 138%;
+	}
+	.fast_nav{
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	margin-top: -30px;
+	background-color: #222 !important;
+	border: none;
+	}
+	.fast_nav_brand{
+	margin-left: 160px;
+	}
+	.fast_nav_ul{
+	/*margin-left:50px;*/
+	}
+	.navbar-default {
+	background-color: #FFF;
+	border-color: #0088ff;
+	}
+	.page-header {
+	border-bottom: none;
+	}
+	.table-hover>tbody>tr:hover>td, .table-hover>tbody>tr:hover>th {
+	background-color: #005469;
+	}
+	.alert-danger {
+	color: #FFFFFF;
+	background-color: #B62121;
+	border-color: #960000;
+	}
+	.alert-success {
+	color: #FFFFFF;
+	background-color: #6FAF54;
+	border-color: #449400;
+	}
+	.alert-warning {
+	color: #000000;
+	background-color: #F5C13B;
+	border-color: #A26A00;
+	}
+	.alert-info {
+	color: #FFFFFF;
+	background-color: #009BE9;
+	border-color: #002C35;
+	}
+	.alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 0;
+	}
+	.sidebar-wrap{
+	background-color: #001631;
+	right: -20%;
+	height: 100%;
+	width: 20%;
+	position: absolute;
+	padding: 1px 0px;
+	}
+	.sidebar-wrap h1,h2,h3,h4,h5,h6{
+	padding:0 1px;
+	}
+	.sidebar-wrap .panel{
+	border-radius: 0;
+	}
+	.sidebar-wrap .panel-default{
+	border-color: #6B6B6B;
+	position: fixed;
+	width: 20%;
+	bottom: -2.2%;
+	overflow-y:auto;
+	overflow-x:auto;
+	max-height:414px;
+	}
+	.sidebar-wrap .panel-heading{
+	color: #333;
+	background-color: #209DFF;
+	border-color: #000507;
+	position: fixed;
+	width: 19.9%;
+	z-index: 0;
+	border-radius: 0;
+	margin-top: -38px;
+	}
+	.sidebar-wrap .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus,.nav-tabs>li>a:hover,.nav-tabs>li>a:focus{
+	border-radius: 0;
+	}
+	.sidebar-wrap .form-control{
+	width:100%;
+	color: #0081E7;
+	background-color: #FFF;
+	border-radius: 0px;
+	}
+	.sidebar-wrap .btn-group{
+	margin-left:22%;
+	}
+	.sidebar-wrap label{
+	color:#FFF;
+	}
+	.sidebar-wrap .btn-group>.btn{
+	border-radius:0;
+	}
+	.sidebar_button{
+	position: fixed;
+	top: 1%;
+	right: 2%;
+	z-index: 1031;
+	}
+	.sidebar_button>a{
+	color:#FFF
+	}
+	.sidebar_title{
+	color:#FFF;
+	text-decoration:underline;
+	text-align:center;
+	}
+	.account_button{
+	margin-left: 24%;
+	border-radius: 0;
+	}
+	.activity>.list-group-item, .breadcrumb{
+	background-color: rgba(255, 255, 255, 0);
+	border: none;
+	color: #FFF;
+	}
+	.assign_project{
+	border-color: #838383;
+	border-radius:0;
+	}
+	.assign_project > .panel-heading{
+	color: #FFF;
+	background-color: #21A4E2;
+	border-color: #131313;
+	border-radius:0;
+	}
+	.front-page li:first-child{
+	margin-left:35%;
+	}
+	.icon{
+	color:#111;
+	}
+	.disabled .icon{
+	color:inherit;
+	}
+	::selection{
+	background-color:#111;
+	color:#FFF;
+	}
+	#main_container{
+	overflow-y:auto !important;
+	}
