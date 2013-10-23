@@ -14,7 +14,7 @@ require "functions/connect.php";
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Wubcrate &middot; Developers</title>
+    <title>Barkley - Project Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="$description">
     <meta name="author" content="Wubcrate">
