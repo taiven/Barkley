@@ -1,4 +1,4 @@
 <?php
- mysql_connect("localhost", "DB_USER", "DB_PASS");
- mysql_select_db("SELECTED_DB");
+ mysql_connect("localhost", "barkley", "barkley");
+ mysql_select_db("barkley");
 ?>
