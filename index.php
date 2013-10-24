@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($userid = $_SESSION['userid'])){$userid = $_SESSION['userid'];}
-if(isset($cemail = $_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
+if(isset($_SESSION['userid'])){$userid = $_SESSION['userid'];}
+if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
 ?>
 <!DOCTYPE html>
 <html lang="en">
