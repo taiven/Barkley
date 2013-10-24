@@ -61,7 +61,7 @@ require "functions/connect.php";
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Developers</a>
+          <a class="navbar-brand" href="index.php">Barkley</a>
 		  </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
