@@ -34,7 +34,10 @@ if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
     <div class="container">
 	<center class="form-signin-logo"><img src="site/img/logo-large.png" /></center>
       <?php
-
+	
+	$error = null;
+	$error_text = null;
+	
 	if ($cemail && $userid){
 		//echo "<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button>You have been logged in as <b>$cemail</b>. <a href='panel'>Click here</a> to go to the member page.</div>";
 		header ("Location: panel");
