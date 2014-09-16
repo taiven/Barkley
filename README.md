@@ -1,4 +1,4 @@
-Barkley-PMS
+Barkley Project Management System
 ===========
 
 The Open Source Project Management System
