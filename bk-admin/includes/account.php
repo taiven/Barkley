@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 	<head>
 		<title>Updating Account</title>
 		<script type="text/javascript" src="../site/js/developer.js"></script>
@@ -34,5 +34,43 @@ $phone = $_POST['phone_number'];
 	}else
 	echo "<META http-equiv='refresh' content='0;URL=../projects.php?error=danger&error_text=Your+account+could+not+be+updated.'>";
 	
+?> -->
+
+
+<?php
+
+class User {
+	private $database;
+	
+	__construct(){
+		$this -> $database = new DataConnect();
+		$this->database = $this->database->Connect();
+	}
+	
+	public function Login($email, $pass) {
+
+    if(!empty($email) && !empty($pass)){
+        $query = $this->database->prepare("SELECT * FROM client_accounts Where email=$email AND pass=$pass");
+        $query->execute();
+
+        if($query->rowCount() == 1){
+				echo "Found User with email $email";
+            }else{
+
+                echo "Couldn't Find User in Database";
+                }
+
+
+        }else{
+
+            echo "Enter a valid Email and Password";
+            }
+
+
+
+
+
+    }
+}
+
 ?>
-</body>
