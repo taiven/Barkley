@@ -1,4 +1,4 @@
-<?php include("site/inc/header.php");?>
+<?php include("includes/header.php");?>
          <ul class="nav nav-tabs" style="margin-left:70px;">
 			<li><a href="?tab=projects"><span class="glyphicon glyphicon-home icon"></span> Projects</a></li>
 			<li><a href="?tab=myprojects"><span class="glyphicon glyphicon-user icon"></span> My Projects</a></li>
@@ -131,4 +131,4 @@
 				</div>
 																	<!-- End Tabs -->
 			</div>
-<?php include("site/inc/footer.php");?>
+<?php include("includes/footer.php");?>

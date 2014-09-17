@@ -1,4 +1,4 @@
-<!-- <html>
+<html>
 	<head>
 		<title>Updating Account</title>
 		<script type="text/javascript" src="../site/js/developer.js"></script>
@@ -34,10 +34,10 @@ $phone = $_POST['phone_number'];
 	}else
 	echo "<META http-equiv='refresh' content='0;URL=../projects.php?error=danger&error_text=Your+account+could+not+be+updated.'>";
 	
-?> -->
+?>
 
 
-<?php
+<!-- <?php
 
 class User {
 	private $database;
@@ -73,4 +73,4 @@ class User {
     }
 }
 
-?>
+?> -->

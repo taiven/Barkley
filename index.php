@@ -13,8 +13,8 @@ if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="site/css/bootstrap.min.css" rel="stylesheet">
-    <link href="site/css/styles.css" rel="stylesheet">
+    <link href="bk-includes/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bk-includes/css/styles.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -40,7 +40,7 @@ if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
 	
 	if ($cemail && $userid){
 		//echo "<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button>You have been logged in as <b>$cemail</b>. <a href='panel'>Click here</a> to go to the member page.</div>";
-		header ("Location: panel");
+		header ("Location: bk-admin");
 	}	
 	else {
 
@@ -95,7 +95,7 @@ if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
 									$_SESSION['username'] = $first_name .="_". $last_name;	
 									
 									//echo "<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button>You have been logged in as <b>$dbemail</b>. <a href='panel'>Click here</a> to go to the member page.</div>";
-									header ("Location: panel");
+									header ("Location: bk-admin");
 								} else
 									echo "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>You must activate your account to login.</div> $form";
 							} else

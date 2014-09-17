@@ -1,4 +1,4 @@
-<?php include("site/inc/header.php");?>
+<?php include("includes/header.php");?>
 	
 	<div id="Slider" class="carousel slide">
 		<div class="carousel-inner">
@@ -89,4 +89,4 @@
 		</div>
 	</div>
 </div>
-<?php include("site/inc/footer.php");?>
+<?php include("includes/footer.php");?>
