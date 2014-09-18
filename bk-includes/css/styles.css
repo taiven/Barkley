@@ -1,18 +1,12 @@
-/*--------------------------------
-Project Name: Control Panel
-Author: Wubcrate
-
-
-
-
-----------------------------------*/
-
-	/* Sign In Form */
+/* Sign In Form */
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+max-width: 330px;
+padding: 15px;
+margin: 5% 0 0 71%;
+background-color: rgba(48, 60, 47, 0.81);
+border-radius: 4px;
 }
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
@@ -42,11 +36,57 @@ Author: Wubcrate
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.form-signin-logo{
-	margin-top:9%;
-	margin-bottom:5px;
-	}
+.form-signin-logo {
+margin-top: 0%;
+margin-bottom: 5px;
+}
 	/* Global */
 a:hover{
 text-decoration:none;
+}
+
+
+/*---------------------------------------------*/
+body {
+background-image: url('../img/background.jpg');
+background-size: 100% 100%;
+background-repeat: no-repeat;
+height: 895px;
+}
+
+a{color:#FFF;} a:hover{color: #6FFF2C;}
+
+.header {
+position: absolute;
+top: 0;
+right: 0;
+left: 0;
+height: 60px;
+background-color: #4E8D4B;
+border-bottom: 1px solid #167A16;
+}
+.header #title {padding: 18px;font-size: 17px;color: #FFF;font-family: "Arial";width: 150px;text-align: center;}
+
+.footer {
+position: absolute;
+bottom: 0;
+right: 0;
+left: 0;
+height: 60px;
+background-color: #4E8D4B;
+border-top: 1px solid #167A16;
+}
+.footer div {
+padding: 18px;
+font-size: 16px;
+font-family: 'Verdana' Arial;
+color: rgba(255, 255, 255, 0.74);
+}
+.footer #copyright{
+display: inline-block;
+floaT: left;
+}
+.footer #version{
+display: inline-block;
+float: right;
 }

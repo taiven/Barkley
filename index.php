@@ -29,15 +29,18 @@ include('bk-config.php');
   </head>
 
   <body>
-
+	
+	<div class="header">
+		<div id="title">Barkley</div>
+	</div>
+	
     <div class="container">
-	<center class="form-signin-logo"><img src="site/img/logo-large.png" /></center>
       <?php
 	
 	$error = null;
 	$error_text = null;
 	
-	if ($cemail && $userid){
+	if (isset($cemail) && isset($userid)){
 		//echo "<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button>You have been logged in as <b>$cemail</b>. <a href='panel'>Click here</a> to go to the member page.</div>";
 		header ("Location: bk-admin");
 	}	
@@ -46,7 +49,8 @@ include('bk-config.php');
 		$form = "
 		<form class='form-signin' action='index.php' method='post' id='Signup'>
 			<div>
-			<div  class='alert alert-$error'><button type='button' class='close' data-dismiss='alert'>&times;</button>$error_text</div>
+			<center class='form-signin-logo'><img src='http://placehold.it/300x150&text=Barkley' /></center>
+			<!--<div  class='alert alert-$error'><button type='button' class='close' data-dismiss='alert'>&times;</button>$error_text</div>-->
 			<input type='text' class='form-control' placeholder='Email Address' name='cemail' />
 			<input type='password' class='form-control' placeholder='Password' name='password' />
 				<button type='submit' class='btn btn-lg btn-primary btn-block' name='loginbtn' value='Login'>Login</button>
@@ -58,7 +62,7 @@ include('bk-config.php');
 				</div>
 </form>";
 	//Change loginbtn is for the actual button on the form... change both to something more suitable
-	if ($_POST['loginbtn']){
+	if (isset($_POST['loginbtn'])){
 	
 		$Email = $_POST['cemail'];
 		$Password = $_POST['password'];
@@ -88,5 +92,10 @@ include('bk-config.php');
     <script src="bk-includes/js/jquery.js"></script>
     <script src="bk-includes/js/bootstrap.min.js"></script>
 
+	<div class="footer">
+		<div id="copyright">Made with &hearts; In Baltimore</div>
+		<div id="version">Barkley 0.1</div>
+	</div>
+	
   </body>
 </html>
