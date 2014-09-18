@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <?php 
-session_start();
+@session_start();
 $userid = $_SESSION['userid'];
 $cemail = $_SESSION['cemail'];
-$username = $_SESSION['username'];
 
 if(!$cemail && !$userid){
- header("Location: ../../index.php");
+ //header("Location: ../index.php");
  }
 
-require "connect.php";
+//require "connect.php";
 ?>
 <html lang="en">
   <head>
@@ -43,7 +42,7 @@ require "connect.php";
 	<script>
 	if(typeof(w)=="undefined")
 	{
-	w=new Worker("site/js/chat.js");
+	w=new Worker("js/chat.js");
 	}</script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -148,7 +147,7 @@ require "connect.php";
 								}
 							}
 							else
-								echo "<META http-equiv='refresh' content='0;URL=projects.php?error=danger&error_text=Please+contact+customer+support+FATAL+error.'>";
+								//echo "<META http-equiv='refresh' content='0;URL=projects.php?error=danger&error_text=Please+contact+customer+support+FATAL+error.'>";
 
 						  ?>
 				<div class="tab-pane" id="account">

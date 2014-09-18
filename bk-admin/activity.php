@@ -1,4 +1,4 @@
-<?php include("site/inc/header.php");?>
+<?php include("includes/header.php");?>
 			<ul class="nav nav-tabs" style="margin-left:70px;">
 			<li><a href="#activity" data-toggle="tab"><span class="glyphicon glyphicon-bullhorn icon"></span> Activity</a></li>
 			<li><a href="#milestones" data-toggle="tab"><span class="glyphicon glyphicon-certificate icon"></span> Milestones</a></li>
@@ -107,4 +107,4 @@
 				</div>
 																		<!-- End Tabs -->
 			</div>
-<?php include("site/inc/footer.php");?> 
+<?php include("includes/footer.php");?> 

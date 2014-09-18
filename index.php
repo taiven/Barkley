@@ -1,7 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['userid'])){$userid = $_SESSION['userid'];}
-if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
+include('bk-config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,61 +58,21 @@ if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
 				</div>
 </form>";
 	//Change loginbtn is for the actual button on the form... change both to something more suitable
-			if ($_POST['loginbtn']){
-	//Change these to something more suitable loginbtn, user, password
-	   $cemail = $_POST['cemail'];
-   	   $password = $_POST['password'];
-
-				if($cemail){
-					if($password){
-			
-						require("panel/functions/connect.php");
-			
-						$password = md5("Wub".$password."Crate!");
-						$password = substr($password, 0, 15);
-						$password = md5($password);
-						
-						// make sure login info correct
-						$query = mysql_query("SELECT * FROM `client_accounts` WHERE email='$cemail'");
-						$numrows = mysql_num_rows($query);
-						if ($numrows == 1){
-							$row = mysql_fetch_assoc($query);
-							$dbid = $row['account_id'];
-							$dbemail = $row['email'];
-							$dbpass = $row['password'];
-							$account_type = $row['account_type'];
-							$dbactive = $row['active'];
-							$first_name = $row['first_name'];
-							$last_name = $row['last_name'];
-							
-						if($account_type > 1){
-							if ($password == $dbpass){
-								if ($dbactive == 1){
-									// set session info
-									$_SESSION['userid'] = $dbid;
-									$_SESSION['cemail'] = $dbemail;	
-									$_SESSION['username'] = $first_name .="_". $last_name;	
-									
-									//echo "<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button>You have been logged in as <b>$dbemail</b>. <a href='panel'>Click here</a> to go to the member page.</div>";
-									header ("Location: bk-admin");
-								} else
-									echo "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>You must activate your account to login.</div> $form";
-							} else
-								echo "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>You did not enter the correct password.</div> $form";
-						}else
-							echo "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>You do not have permission to access this website.</div>";
-			}
-			else
-			   echo "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>The email you entered was not found.</div> $form";
-
-
-			mysql_close();		
-			}
-			else
-				echo "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>You mus enter your password.</div> $form";
-				}
-		else
-		    echo "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button>You must enter your username.</div> $form";
+	if ($_POST['loginbtn']){
+	
+		$Email = $_POST['cemail'];
+		$Password = $_POST['password'];
+		
+		$User = new User($Email, $Password);
+		$UserInfo = $User->Login();
+		
+		if(isset($UserInfo)){
+			if(isset($UserInfo[0])){$_SESSION['userid'] = $UserInfo[0];}
+			if(isset($UserInfo[1])){$_SESSION['cemail'] = $UserInfo[1];}
+			echo "<meta http-equiv='refresh' content='0;URL=bk-admin'>";
+		}else{
+			echo "An error occured while trying to log you in.";
+		}
 	}	
 	else
 	    echo $form;
@@ -126,8 +85,8 @@ if(isset($_SESSION['cemail'])){$cemail = $_SESSION['cemail'];}
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="site/js/jquery.js"></script>
-    <script src="site/js/bootstrap.min.js"></script>
+    <script src="bk-includes/js/jquery.js"></script>
+    <script src="bk-includes/js/bootstrap.min.js"></script>
 
   </body>
 </html>

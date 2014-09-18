@@ -1,4 +1,4 @@
-<?php include("site/inc/header.php");?>
+<?php include("includes/header.php");?>
           <ul class="nav nav-tabs" style="margin-left:70px;">
 			<li><a href="?tab=overview"><span class="glyphicon glyphicon-home icon"></span> Overview</a></li>
 			<li><a href="?tab=client<?php error_reporting(0); if($_GET['project'] == null){/*nothing*/}else echo "&project=".$_GET['project'];?>"><span class="glyphicon glyphicon-user icon"></span> Client Base</a></li>
@@ -197,4 +197,4 @@
 				</div>
 																		<!-- End Tabs -->
 			</div>
-<?php include("site/inc/footer.php");?>
+<?php include("includes/footer.php");?>

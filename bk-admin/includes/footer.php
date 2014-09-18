@@ -50,7 +50,7 @@
 						</div>
 						<ul class="list-group">
 						<?php 
-							require("functions/connect.php");
+							//require("functions/connect.php");
 							$query = "SELECT * FROM client_accounts WHERE 1";
 							$query = mysql_query($query);
 							$numrows = mysql_num_rows($query);
@@ -210,11 +210,11 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">Editing Task: <?php
-					$task = $_GET['task'];
+					/*$task = $_GET['task'];
 					$task_title = "SELECT `task_title` FROM `tasks` WHERE task_id= '$task'";
 					$task_title = mysql_query($task_title) or die(mysql_error());
 					$task_title = mysql_result($task_title, 0);
-					echo $task_title;
+					echo $task_title;*/
 					?></h4>
 				</div>
 				<div class="modal-body">
@@ -222,11 +222,11 @@
 						<form method="post" action="functions/edit_task.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task']; ?>" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
-						  <?php 
+						  <?php /*
 						  $task_deadline = "SELECT `deadline` FROM `tasks` WHERE task_id = '$task_id'";
 						  $task_deadline = mysql_query($task_deadline);
 						  $task_deadline = mysql_result($task_deadline, 0);
-						  ?>
+						 */ ?>
 							<label for="project_name">Task Title</label>
 							<input type="text" class="form-control" id="project_name" name="task_title"  style="width:50%;" placeholder="Task Title" value=""/>
 						  </div>
@@ -255,11 +255,11 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">Editing SubTask: <?php
-					$subtask = $_GET['subtask'];
+					/*$subtask = $_GET['subtask'];
 					$task_title = "SELECT `task_title` FROM `subtasks` WHERE subtask_id= '$subtask'";
 					$task_title = mysql_query($task_title) or die(mysql_error());
 					$task_title = mysql_result($task_title, 0);
-					echo $task_title;
+					echo $task_title;*/
 					?></h4>
 				</div>
 				<div class="modal-body">
@@ -267,11 +267,11 @@
 						<form method="post" action="functions/edit_subtask.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task']; ?>&subtask=<?php echo $_GET['subtask']; ?>" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
-						  <?php 
+						  <?php /*
 						  $task_deadline = "SELECT `deadline` FROM `subtasks` WHERE subtask_id = '$subtask'";
 						  $task_deadline = mysql_query($task_deadline);
 						  $task_deadline = mysql_result($task_deadline, 0);
-						  ?>
+						  */?>
 							<label for="project_name">Task Title</label>
 							<input type="text" class="form-control" id="project_name" name="subtask_title"  style="width:50%;" placeholder="Task Title" value=""/>
 						  </div>
@@ -298,24 +298,24 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Editing Milestone: <?php
+					<h4 class="modal-title">Editing Milestone: <?php/*
 					$milestone = $_GET['milestone'];
 					$milestone_title = "SELECT `milestone_title` FROM `milestones` WHERE milestone_id= '$milestone'";
 					$milestone_title = mysql_query($milestone_title) or die(mysql_error());
 					$milestone_title = mysql_result($milestone_title, 0);
 					echo $milestone_title;
-					?></h4>
+					*/?></h4>
 				</div>
 				<div class="modal-body">
 					<div class="container">
 						<form method="post" action="functions/edit_milestone.php?project=<?php echo $_GET['project'];?>&milestone=<?php echo $_GET['milestone']; ?>" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
-						  <?php 
+						  <?php /*
 						  $milestone_date = "SELECT `date` FROM `milestones` WHERE milestone_id = '$milestone'";
 						  $milestone_date = mysql_query($milestone_date);
 						  $milestone_date = mysql_result($milestone_date, 0);
-						  ?>
+						  */?>
 							<label for="project_name">Milestone Title</label>
 							<input type="text" class="form-control" id="milestone_title" name="milestone_title"  style="width:50%;" placeholder="Milestone Title" value=""/>
 						  </div>
@@ -340,10 +340,10 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="site/js/jquery.js"></script>
-    <script type="text/javascript" src="site/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="site/js/developer.js"></script>
-	<script type="text/javascript" src="site/js/chat.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/developer.js"></script>
+	<script type="text/javascript" src="js/chat.js"></script>
 
   </body>
 </html>
