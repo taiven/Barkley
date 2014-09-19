@@ -1,7 +1,7 @@
 	<footer>
 		<div id="footer" class="container">
         <p class="pull-left">Wubcrate Copyright &copy; 2013 | <a href="http://wubcrate.com">Back to Wubcrate</a> | <a href="../logout.php">Logout</a> | <a href="#">Feedback</a></p>
-        <p class="pull-right version">&middot;&middot;Developers&middot;&middot; | Beta V1.7.0</p>
+        <p class="pull-right version">&middot;&middot;Developers&middot;&middot; | Development V0.1</p>
 		</div>
 	</footer>
 	
