@@ -1,6 +1,6 @@
 	<footer>
 		<div id="footer" class="container">
-        <p class="pull-left">Wubcrate Copyright &copy; 2013 | <a href="http://wubcrate.com">Back to Wubcrate</a> | <a href="../logout.php">Logout</a> | <a href="#">Feedback</a></p>
+        <p class="pull-left">Wubcrate Copyright &copy; 2013 | <a href="http://wubcrate.com">Back to Wubcrate</a> | <a href="logout.php">Logout</a> | <a href="#">Feedback</a></p>
         <p class="pull-right version">&middot;&middot;Developers&middot;&middot; | Development V0.1</p>
 		</div>
 	</footer>
@@ -340,7 +340,6 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/developer.js"></script>
 	<script type="text/javascript" src="js/chat.js"></script>

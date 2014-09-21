@@ -7,9 +7,9 @@
 			<li class="<?php error_reporting(0); if(!$_GET['project']){ echo "disabled";}?>"><a href="functions/archive.php?project=<?php echo $_GET['project'];?>&archived=1"><span class="glyphicon glyphicon-remove icon"></span> Archive Project</a></li>
 			<li class="navbar-text">Current Project Selected: <b><?php if($_GET['project']){
 						$current_project = $_GET['project'];
-						$query = "SELECT `project_name` FROM `projects` WHERE project_id = $current_project";
-						$query = mysql_query($query);
-						$selected_project = mysql_result($query, 0);
+						$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+						$query = mysqli_query($DataConnect, "SELECT `project_name` FROM `projects` WHERE project_id = $current_project");
+						$selected_project = $query->fetch_row()[0];
 						echo $selected_project;
 						}else echo "<b>None</b>";?></b></li>
 			</ul>
@@ -34,43 +34,25 @@
 						  </tr>
 						  <!-- Edit with PHP -->
 						  <?php
-							require("functions/connect.php");
-							$query = "SELECT * FROM projects WHERE 1";
-							$query = mysql_query($query);
-							$numrows = mysql_num_rows($query);
-							if ($numrows > 0){
-								
-								while ($row = mysql_fetch_assoc($query)){
-									$project_id = $row ['project_id'];
-									$project_name = $row ['project_name'];
-									$start = $row ['start'];
-									$deadline = $row ['deadline'];
-									$description = $row ['description'];
-									$archived = $row ['archived'];
-									$deadline = strtotime($deadline);
-									$deadline = date("F j,Y", $deadline);
-									$start = strtotime($start);
-									$start = date("F j,Y", $start);
-									
-									$tasks =  "SELECT `task_id`, COUNT(task_id) FROM `tasks` WHERE `project_id` = '$project_id'";
-									$tasks = mysql_query($tasks);
-									$tasks = mysql_result($tasks,0,1);
-									
-									if($archived == 0){
-										echo "<tr>
-											<td>$project_name</td>
-											<td>$start</td>
-											<td>$tasks</td>
-											<td>$deadline</td>
-											<td>$description</td>
-											<!--<td><a class='btn btn-primary' href='?tab=myprojects&project=$project_id'>Select</a></td>-->
-											</tr>";
-									}
-								}
-							
+							$Projects = new Project();
+							if($Projects){
+								$Project_Results = $Projects->ReturnAll();
+							}else{
+								echo "Project object could not be created.";
 							}
-							else
-								echo "Their is no projects";
+							
+							if($Project_Results){
+								foreach ($Project_Results as $Project){
+									//echo "Returned Project <b>\"".$Project->projectName ."\"</b> from your database.</br>";
+									echo "<tr>
+											<td>".$Project->projectName."</td>
+											<td>".$Project->projectStart."</td>
+											<td>".$Project->projectTasks."</td>
+											<td>".$Project->projectDeadline."</td>
+											<td>".$Project->projectDescription."</td>
+										</tr>";
+								}
+							}
 						  ?>
 						</table>
 					</div>
@@ -89,42 +71,26 @@
 							  </tr>
 							  <!-- Edit with PHP -->
 							<?php
-								$query = "SELECT * FROM project_mapping, projects WHERE a_id = '$userid' AND p_id= project_id";
-								$query = mysql_query($query);
-								$numrows = mysql_num_rows($query);
-								if ($numrows > 0){
-								
-								while ($row = mysql_fetch_assoc($query)){
-									$project_id = $row ['project_id'];
-									$project_name = $row ['project_name'];
-									$start = $row ['start'];
-									$deadline = $row ['deadline'];
-									$description = $row ['description'];
-									$archived = $row ['archived'];
-									$deadline = strtotime($deadline);
-									$deadline = date("F j,Y", $deadline);
-									$start = strtotime($start);
-									$start = date("F j,Y", $start);
-									
-									$tasks =  "SELECT `task_id`, COUNT(task_id) FROM `tasks` WHERE `project_id` = '$project_id'";
-									$tasks = mysql_query($tasks);
-									$tasks = mysql_result($tasks,0,1);
-									
-									if($archived == 0){
-										echo "<tr>
-											<td>$project_name</td>
-											<td>$start</td>
-											<td>$tasks</td>
-											<td>$deadline</td>
-											<td>$description</td>
-											<td><a class='btn btn-primary' href='?tab=myprojects&project=$project_id'>Select</a></td>
-											</tr>";
-									}
-								}
-							
+								$Projects = new Project();
+							if($Projects){
+								$Project_Results = $Projects->ReturnAll($userid);
+							}else{
+								echo "Project object could not be created.";
 							}
-							else
-								echo "Their is no projects";
+							
+							if($Project_Results){
+								foreach ($Project_Results as $Project){
+									//echo "Returned Project <b>\"".$Project->projectName ."\"</b> from your database.</br>";
+									echo "<tr>
+											<td>".$Project->projectName."</td>
+											<td>".$Project->projectStart."</td>
+											<td>".$Project->projectTasks."</td>
+											<td>".$Project->projectDeadline."</td>
+											<td>".$Project->projectDescription."</td>
+											<td><a class='btn btn-primary' href='?tab=myprojects&project=".$Project->projectID."'>Select</a></td>
+										</tr>";
+								}
+							}
 							?>
 							</table>
 						</div>

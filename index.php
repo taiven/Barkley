@@ -73,6 +73,7 @@ include('bk-config.php');
 		if(isset($UserInfo)){
 			if(isset($UserInfo[0])){$_SESSION['userid'] = $UserInfo[0];}
 			if(isset($UserInfo[1])){$_SESSION['cemail'] = $UserInfo[1];}
+			if(isset($UserInfo[2])){if(isset($UserInfo[3])){$_SESSION['username'] = "$UserInfo[2]_$UserInfo[3]";}}
 			echo "<meta http-equiv='refresh' content='0;URL=bk-admin'>";
 		}else{
 			echo "An error occured while trying to log you in.";

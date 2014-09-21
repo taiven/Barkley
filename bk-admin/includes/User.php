@@ -63,11 +63,13 @@ class User{
 				$User_ID = $row['account_id'];
 				$DB_Email = $row['email'];
 				$DB_Password = $row['password'];
+				$DB_FName = $row['first_name'];
+				$DB_LName = $row['last_name'];
 			}
 			
 			if($Email == $DB_Email){
 				if($Password == $DB_Password){
-					return array($User_ID, $DB_Email);
+					return array($User_ID, $DB_Email, $DB_FName, $DB_LName);
 				}
 			}
 			

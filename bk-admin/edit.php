@@ -1,4 +1,4 @@
-<?php include("site/inc/header.php");?>
+<?php include("includes/header.php");?>
          <ul class="nav nav-tabs" style="margin-left:70px;">
 			<li><a href="?tab=overview&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-dashboard icon"></span> Overview</a></li>
 			<li><a href="?tab=tasks&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list-alt icon"></span> Tasks</a></li>
@@ -14,58 +14,25 @@
 			
 					if($_GET['project']){
 						$project = $_GET['project'];
-						$query = "SELECT * FROM project_mapping WHERE a_id = '$userid' AND p_id= '$project'";
-						$query = mysql_query($query);
-						$numrows = mysql_num_rows($query);
-							if ($numrows > 0){
-								
-								while ($row = mysql_fetch_assoc($query)){
-									$id = $row ['id'];
-									$p_id = $row ['p_id'];
-									$a_id = $row ['a_id'];
-									$project_mapping_date = $row ['date'];
-								}
-							
-							}
-						if($userid == $a_id && $project == $p_id){
+						$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+						$Query = mysqli_query($DataConnect,"SELECT * FROM project_mapping WHERE a_id = '$userid' AND p_id= '$project'") or die('Query not working');
+						$row = $Query->fetch_assoc();
+							$id = $row ['id'];
+							$p_id = $row ['p_id'];
+							$a_id = $row ['a_id'];
+							$project_mapping_date = $row ['date'];
+						//echo "$id, $p_id, $a_id, $project_mapping_date";
+					}
+					if($userid == $a_id && $project == $p_id){
 						// User belongs to project
-						}else
+					}else{
 						echo "<META http-equiv='refresh' content='0;URL=projects.php?project=$project&error=danger&error_text=You+do+not+have+access+to+this+project.'>";
 					}
-					$project = $_GET['project'];
-							require("functions/connect.php");
-							$query = "SELECT * FROM projects WHERE project_id='$project'";
-							$query = mysql_query($query);
-							$numrows = mysql_num_rows($query);
-							if ($numrows > 0){
-								
-								while ($row = mysql_fetch_assoc($query)){
-									$project_id = $row ['project_id'];
-									$client_id = $row ['client_id'];
-									$project_name = $row ['project_name'];
-									$start = $row ['start'];
-									$deadline = $row ['deadline'];
-									$description = $row ['description'];
-									$tasks = $row ['tasks'];
-									$archived = $row ['archived'];
-									$deadline = strtotime($deadline);
-									$deadline = date("F j,Y", $deadline);
-								}
-							
-							}
-							else
-								//header("Location: projects.php?project=$project&error=danger&error_text=An+error+has+occured+please+select+your+project.");
-								echo "<META http-equiv='refresh' content='0;URL=projects.php?project=$project&error=danger&error_text=An+error+has+occured+please+select+your+project.'>";
-						  ?>
+					?>
 			<div id="content" class="tab-content">
 				<div class="tab-pane <?php if($_GET['tab'] == "overview"){echo "active";}?>" id="overview">
 					<div class="container">
 						<h3>Overview</h3>
-						<?php if($_GET['tab'] == "overview"){
-						$tasks =  "SELECT `task_id`, COUNT(task_id) FROM `tasks` WHERE `project_id` = '$project'";
-						$tasks = mysql_query($tasks);
-						$tasks = mysql_result($tasks,0,1);
-						}?>
 						<table class="table">
 							<tr>
 								<th>Project Name</th>
@@ -74,15 +41,20 @@
 								<th>Project Tasks</th>
 							</tr>
 							<?php
-							
-									if($archived == 0){
-										echo "<tr>
-										<td>$project_name</td>
-										<td>$deadline</td>
-										<td>$description</td>
-										<td>$tasks</td>
+							$Projects = new Project();
+							if($Projects){
+								$Project = $Projects->Get($_GET['project']);
+							}
+								if($Project){
+									echo "<tr>
+											<td>". $Project->projectName ."</td>
+											<td>". $Project->projectDeadline ."</td>
+											<td>". $Project->projectDescription ."</td>
+											<td>". $Project->projectTasks ."</td>
 										</tr>";
-									}
+								}else{
+									//echo "<META http-equiv='refresh' content='0;URL=projects.php?project=$project&error=danger&error_text=An+error+has+occured+please+select+your+project.'>";
+								}
 							?>
 						</table>
 					</div>
@@ -96,12 +68,12 @@
 						<li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="functions/deltask.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>"><span class="glyphicon glyphicon-remove icon"></span> Delete Task</a></li>
 						<li class="navbar-text">Current Task Selected:<b>
 						<?php
-						require("functions/connect.php");
+						//require("functions/connect.php");
 						$current_task = $_GET['task'];
 						if($current_task){
 						$query = "SELECT `task_title` FROM `tasks` WHERE task_id = $current_task";
-						$query = mysql_query($query);
-						$selected_task = mysql_result($query, 0);
+						//$query = mysql_query($query);
+						//$selected_task = mysql_result($query, 0);
 						echo $selected_task;}else
 						echo "None";
 						?></b></li>
@@ -118,41 +90,23 @@
 								<th>Select</th>
 							</tr>
 						<?php 
-							$project = $_GET['project'];
-							require("functions/connect.php");
-							$query = "SELECT * FROM tasks WHERE project_id='$project'";
-							$query = mysql_query($query);
-							$numrows = mysql_num_rows($query);
-							if ($numrows > 0){
-								
-								while ($row = mysql_fetch_assoc($query)){
-									$task_id = $row ['task_id'];
-									$project_id = $row ['project_id'];
-									$task_title = $row ['task_title'];
-									$task_details = $row ['task_details'];
-									$assignedto = $row ['assignedto'];
-									$assignedby = $row ['assignedby'];
-									$task_deadline = $row ['deadline'];
-									$complete = $row ['complete'];
-									$task_date = $row ['date'];
-									$task_deadline = strtotime($task_deadline);
-									$task_deadline = date("F j,Y", $task_deadline);
 						
-									if($complete == 0){
-										echo "<tr>
-										<td>$task_title</td>
-										<td>$task_details</td>
-										<td>$assignedto</td>
-										<td>$assignedby</td>
-										<td>$task_deadline</td>
-										<td><a class='btn btn-primary' href='?tab=tasks&project=$project&task=$task_id'>Select</a></td>
-										</tr>";
-									}
-						  	}
-							
+						$Tasks = new Task();
+						if($Tasks){$Tasks_Info = $Tasks->ReturnAll($_GET['project']);}
+						
+						if($Tasks_Info){
+							foreach ($Tasks_Info as $Task){
+								echo "<tr>
+										<td>".$Task->taskTitle."</td>
+										<td>".$Task->taskDetails."</td>
+										<td>".$Task->taskAssignedTo."</td>
+										<td>".$Task->taskAssignedBy."</td>
+										<td>".$Task->taskDeadline."</td>
+										<td><a class='btn btn-primary' href='?tab=tasks&project=".$_GET['project']."&task=".$Task->taskID."'>Select</a></td>
+									</tr>";
 							}
-							else
-								echo "Their are no tasks associated with this project";
+						}else
+							echo "Their are no tasks associated with this project";
 						  ?>
 						    </table>
 					</div>
@@ -166,12 +120,12 @@
 							<li class="<?php error_reporting(0); if(!$_GET['subtask']){ echo "disabled";}?>"><a href="functions/delsubtask.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>&subtask=<?php echo $_GET['subtask'];?>">Delete Subtask</a></li>
 							<li class="navbar-text">Current Task Selected:<b>
 						<?php
-						require("functions/connect.php");
+						//require("functions/connect.php");
 						$current_task = $_GET['subtask'];
 						if($current_task){
 						$query = "SELECT `task_title` FROM `subtasks` WHERE subtask_id = $current_task";
-						$query = mysql_query($query);
-						$selected_task = mysql_result($query, 0);
+						//$query = mysql_query($query);
+						//$selected_task = mysql_result($query, 0);
 						echo $selected_task;}else
 						echo "None";
 						?></b></li>
@@ -189,11 +143,11 @@
 								</tr>
 								<?php 
 							$task_id = $_GET['task'];
-							require("functions/connect.php");
+							//require("functions/connect.php");
 							//$query = "SELECT * FROM subtasks WHERE task_id='$task'";
 							$query = "SELECT * FROM subtask_mapping, subtasks WHERE t_id = '$task_id' AND st_id= subtask_id";
-							$query = mysql_query($query);
-							$numrows = mysql_num_rows($query);
+							//$query = mysql_query($query);
+							//$numrows = mysql_num_rows($query);
 							if ($numrows > 0){
 								
 								while ($row = mysql_fetch_assoc($query)){
@@ -236,12 +190,12 @@
 						<li class="<?php error_reporting(0); if(!$_GET['milestone']){ echo "disabled";}?>"><a href="functions/delmilestone.php?project=<?php echo $_GET['project'];?>&milestone=<?php echo $_GET['milestone']?>"><span class="glyphicon glyphicon-remove icon"></span> Delete Milestone</a></li>
 						<li class="navbar-text">Current Milestone Selected:<b>
 						<?php
-						require("functions/connect.php");
+						//require("functions/connect.php");
 						$current_milestone = $_GET['milestone'];
 						if($current_milestone){
 						$query = "SELECT `milestone_title` FROM `milestones` WHERE milestone_id = $current_milestone";
-						$query = mysql_query($query);
-						$selected_milestone = mysql_result($query, 0);
+						//$query = mysql_query($query);
+						//$selected_milestone = mysql_result($query, 0);
 						echo $selected_milestone;}else
 						echo "None";
 						?></b></li>
@@ -256,33 +210,20 @@
 								<th>Select</th>
 							</tr>
 						<?php 
-							$project = $_GET['project'];
-							require("functions/connect.php");
-							$query = "SELECT * FROM milestones WHERE project_id='$project'";
-							$query = mysql_query($query);
-							$numrows = mysql_num_rows($query);
-							if ($numrows > 0){
-								
-								while ($row = mysql_fetch_assoc($query)){
-									$milestone_id = $row ['milestone_id'];
-									$project_id = $row ['project_id'];
-									$milestone_title = $row ['milestone_title'];
-									$milestone_details = $row ['milestone_details'];
-									$milestone_date = $row ['date'];
-									$milestone_date = strtotime($milestone_date);
-									$milestone_date = date("F j,Y", $milestone_date);
-								
-										echo "<tr>
-										<td>$milestone_title</td>
-										<td>$milestone_details</td>
-										<td>$milestone_date</td>
-										<td><a class='btn btn-primary' href='?tab=milestones&project=$project&milestone=$milestone_id'>Select</a></td>
-										</tr>";
-								}
-							
+						$Milestones = new Milestone();
+						if($Milestones){$Milestone_Info = $Milestones->ReturnAll($_GET['project']);}
+						
+						if($Milestone_Info){
+							foreach ($Milestone_Info as $Milestone){
+								echo "<tr>
+										<td>".$Milestone->milestoneTitle."</td>
+										<td>".$Milestone->milestoneDetails."</td>
+										<td>".$Milestone->milestoneDate."</td>
+										<td><a class='btn btn-primary' href='?tab=milestones&project=".$_GET['project']."&milestone=".$Milestone->milestoneID."'>Select</a></td>
+									</tr>";
 							}
-							else
-								echo "Their are no milestones associated with this project";
+						}else
+							echo "Their are no milestones associated with this project";
 								?>
 						  </table>
 					</div>
@@ -305,4 +246,4 @@
 				</div>
 																		<!-- End Tabs -->
 			</div>
-<?php include("site/inc/footer.php");?>
+<?php include("includes/footer.php");?>

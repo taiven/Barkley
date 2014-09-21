@@ -3,12 +3,12 @@
 @session_start();
 $userid = $_SESSION['userid'];
 $cemail = $_SESSION['cemail'];
-
+$username = $_SESSION['username'];
+include('../bk-config.php');
 if(!$cemail && !$userid){
- //header("Location: ../index.php");
+	header("Location: ../index.php");
  }
 
-//require "connect.php";
 ?>
 <html lang="en">
   <head>
@@ -28,8 +28,6 @@ if(!$cemail && !$userid){
 	<link type="text/css" rel="stylesheet" media="all" href="site/css/screen_ie.css" />
 	<link type="text/css" rel="stylesheet" media="all" href="site/css/ie_styles.css" />
 	<![endif]-->
-	
-
     <style type="text/css">
       body {
         padding-top: 50px;
@@ -39,6 +37,7 @@ if(!$cemail && !$userid){
         padding: 9px 0;
       }
     </style>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script>
 	if(typeof(w)=="undefined")
 	{
@@ -112,7 +111,7 @@ if(!$cemail && !$userid){
 							<img class="media-object" src="http://placehold.it/20x20" alt="...">
 							</a>
 							<div class="media-body">
-							<a href="#" onclick="javascript:chatWith('Taiven_Rumph')"><h4 class="media-heading">Taiven Rumph</h4></a>
+							<a href="#" onclick="javascript:chatWith('John_Doe')"><h4 class="media-heading">John Doe</h4></a>
 							<p>Chief Executive Officer</p>
 							</div>
 							</div>

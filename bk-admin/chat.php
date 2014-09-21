@@ -20,15 +20,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 
 define ('DBPATH','localhost');
-define ('DBUSER','taiven_wubcrate');
-define ('DBPASS','rigorison');
-define ('DBNAME','taiven_wubcrate');
+define ('DBUSER','barkley');
+define ('DBPASS','barkley');
+define ('DBNAME','barkley');
 
 session_start();
 
-global $dbh;
-$dbh = mysql_connect(DBPATH,DBUSER,DBPASS);
-mysql_selectdb(DBNAME,$dbh);
 
 if ($_GET['action'] == "chatheartbeat") { chatHeartbeat(); } 
 if ($_GET['action'] == "sendchat") { sendChat(); } 
@@ -44,14 +41,13 @@ if (!isset($_SESSION['openChatBoxes'])) {
 }
 
 function chatHeartbeat() {
-	
-	$sql = "select * from chat where (chat.to = '".mysql_real_escape_string($_SESSION['username'])."' AND recd = 0) order by id ASC";
-	$query = mysql_query($sql);
+	$DataConnect = mysqli_connect(DBPATH,DBUSER,DBPASS,DBNAME);
+	$query = mysqli_query($DataConnect,"select * from chat where (chat.to = '".$_SESSION['username']."' AND recd = 0) order by id ASC");
 	$items = '';
 
 	$chatBoxes = array();
 
-	while ($chat = mysql_fetch_array($query)) {
+	while ($chat = $query->fetch_array()) {
 
 		if (!isset($_SESSION['openChatBoxes'][$chat['from']]) && isset($_SESSION['chatHistory'][$chat['from']])) {
 			$items = $_SESSION['chatHistory'][$chat['from']];
@@ -115,9 +111,8 @@ EOD;
 		}
 	}
 }
-
-	$sql = "update chat set recd = 1 where chat.to = '".mysql_real_escape_string($_SESSION['username'])."' and recd = 0";
-	$query = mysql_query($sql);
+	$DataConnect = mysqli_connect(DBPATH,DBUSER,DBPASS,DBNAME);
+	$query = mysqli_query($DataConnect,"update chat set recd = 1 where chat.to = '".$_SESSION['username']."' and recd = 0");
 
 	if ($items != '') {
 		$items = substr($items, 0, -1);
@@ -196,9 +191,8 @@ EOD;
 
 
 	unset($_SESSION['tsChatBoxes'][$_POST['to']]);
-
-	$sql = "insert into chat (chat.from,chat.to,message,sent) values ('".mysql_real_escape_string($from)."', '".mysql_real_escape_string($to)."','".mysql_real_escape_string($message)."',NOW())";
-	$query = mysql_query($sql);
+	$DataConnect = mysqli_connect(DBPATH,DBUSER,DBPASS,DBNAME);
+	$query = mysqli_query($DataConnect,"insert into chat (chat.from,chat.to,message,sent) values ('".$from."', '".$to."','".$message."',NOW())");
 	echo "1";
 	exit(0);
 }
