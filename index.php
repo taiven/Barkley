@@ -1,6 +1,11 @@
 <?php
 session_start();
-include('bk-config.php');
+require('bk-config.php');
+  if (!defined('DB_NAME')) {
+   header('Location: bk-admin/install.php');
+   exit;
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
