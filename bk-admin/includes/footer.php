@@ -170,7 +170,7 @@
 	<!--</div><!-- /.modal -->
 	
 	<!-- Modal -->
-	<!--<div class="modal fade" id="new_milestone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="new_milestone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -179,7 +179,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form method="post" action="functions/newmilestone.php?project=<?php //echo $_GET['project'];?>" role="form">
+						<form method="post" action="edit.php?tab=milestones&project=<?php echo $_GET['project'];?>&action=new_milestone" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
 							<label for="project_name">Milestone Title</label>
@@ -200,8 +200,8 @@
 					</form>
 				</div>
 			</div><!-- /.modal-content -->
-		<!--</div><!-- /.modal-dialog -->
-	<!--</div><!-- /.modal -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	
 	<!-- Modal -->
 	<div class="modal fade" id="edit_task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

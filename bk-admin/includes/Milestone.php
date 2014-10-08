@@ -1,17 +1,38 @@
 <?php 
 class Milestone{
 	
+	public $accountID;
 	public $projectID;
 	public $milestoneID;
 	public $milestoneTitle;
 	public $milestoneDetails;
 	public $milestoneDate;
 
-	public function NewTaskMilestone(){}
+	public function Create(){
+		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+		if(isset($this->projectID) && isset($this->milestoneTitle) && isset($this->milestoneDetails) && isset($this->milestoneDate)){
+			$results = mysqli_query($DataConnect, "INSERT INTO `milestones` VALUES ('', '".$this->projectID."', '".$this->milestoneTitle."', '".$this->milestoneDetails."', '0', 'NOW()')");
+			if($results){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
 	public function NewProjectMilestone(){}
 	public function Complete(){}
 	public function Update(){}
-	public function Delete(){}
+	public function Delete(){
+		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+		if(isset($this->milestoneID)){
+			$results = mysqli_query($DataConnect, "DELETE FROM `milestones` WHERE milestone_id = '".$this->milestoneID."'");
+			if($results){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
 	
 	public function ReturnAll($ProjectID = null){
 		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');

@@ -260,15 +260,14 @@
 						<ul class="nav nav-tabs" style="margin-left:70px;">
 						<li><a href="#new_milestone" data-toggle="modal"><span class="glyphicon glyphicon-folder-close icon"></span> New Milestone</a></li>
 						<li class="<?php error_reporting(0); if(!$_GET['milestone']){ echo "disabled";}?>"><a href="#edit_milestone" data-toggle="modal"><span class="glyphicon glyphicon-edit icon"></span> Edit Milestone</a></li>
-						<li class="<?php error_reporting(0); if(!$_GET['milestone']){ echo "disabled";}?>"><a href="functions/delmilestone.php?project=<?php echo $_GET['project'];?>&milestone=<?php echo $_GET['milestone']?>"><span class="glyphicon glyphicon-remove icon"></span> Delete Milestone</a></li>
+						<li class="<?php error_reporting(0); if(!$_GET['milestone']){ echo "disabled";}?>"><a href="edit.php?tab=milestones&project=<?php echo $_GET['project'];?>&milestone=<?php echo $_GET['milestone']?>&action=delete_milestone"><span class="glyphicon glyphicon-remove icon"></span> Delete Milestone</a></li>
 						<li class="navbar-text">Current Milestone Selected:<b>
 						<?php
-						//require("functions/connect.php");
 						$current_milestone = $_GET['milestone'];
 						if($current_milestone){
-						$query = "SELECT `milestone_title` FROM `milestones` WHERE milestone_id = $current_milestone";
-						//$query = mysql_query($query);
-						//$selected_milestone = mysql_result($query, 0);
+						$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+						$query = mysqli_query($DataConnect, "SELECT `milestone_title` FROM `milestones` WHERE milestone_id = $current_milestone");
+						$selected_milestone = $query->fetch_row()[0];
 						echo $selected_milestone;}else
 						echo "None";
 						?></b></li>
@@ -297,6 +296,43 @@
 							}
 						}else
 							echo "Their are no milestones associated with this project";
+
+						if($_GET['action'] == "new_milestone"){
+							if($_POST['milestone_title']){
+								if($_POST["milestone_date"]){
+									if($_POST["milestone_details"]){
+										$TempMilestone = new Milestone();
+										$TempMilestone->accountID = $userid;
+										$TempMilestone->projectID = $_GET['project'];
+										$TempMilestone->milestoneTitle = $_POST['milestone_title'];
+										$TempMilestone->milestoneDetails = $_POST["milestone_details"];
+										$TempMilestone->milestoneDate = $_POST["milestone_date"];
+										$TempMilestoneResults = $TempMilestone->Create();
+
+										if($TempMilestoneResults){
+											echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$TempMilestone->projectID&error=success&error_text=Your+Milestone+has+been+created+successfully.'>";
+										}else{
+											echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$TempMilestone->projectID&error=danger&error_text=Your+Milestone+could+not+be+created+an+error+occured.'>";
+										}
+									}
+								}
+							}
+						}
+
+						if($_GET['action'] == "delete_milestone"){
+							if($_GET['milestone']){
+										$TempMilestone = new Milestone();
+										$TempMilestone->accountID = $userid;
+										$TempMilestone->milestoneID = $_GET['milestone'];
+										$TempMilestoneResults = $TempMilestone->Delete();
+
+										if($TempMilestoneResults){
+											//echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$_GET['project']&error=success&error_text=Your+Milestone+<b>$selected_milestone</b>+has+been+deleted+successfully.'>";
+										}else{
+											//echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$_GET['project']&error=danger&error_text=Your+Milestone+<b>$selected_milestone</b>+could+not+be+deleted+an+error+occured.'>";
+										}
+							}
+						}
 								?>
 						  </table>
 					</div>
