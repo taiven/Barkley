@@ -1,4 +1,5 @@
 <?php include("includes/header.php");?>
+			<?php error_reporting (E_ALL); ?>
          <ul class="nav nav-tabs" style="margin-left:70px;">
 			<li><a href="?tab=overview&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-dashboard icon"></span> Overview</a></li>
 			<li><a href="?tab=tasks&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list-alt icon"></span> Tasks</a></li>
@@ -64,21 +65,21 @@
 					
 					<ul class="nav nav-tabs" style="margin-left:70px;">
 						<li><a href="#new_task" data-toggle="modal"><span class="glyphicon glyphicon-folder-close icon"></span> New Task</a></li>
-						<li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="#edit_task" data-toggle="modal"><span class="glyphicon glyphicon-edit icon"></span> Edit Task</a></li>
-						<li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="functions/deltask.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>"><span class="glyphicon glyphicon-remove icon"></span> Delete Task</a></li>
+						<li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="#edit_task" <?php if($_GET['task']){ echo "data-toggle=\"modal\"";}  ?>><span class="glyphicon glyphicon-edit icon"></span> Edit Task</a></li>
+						<li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="edit.php?tab=tasks&project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>&action=delete_task"><span class="glyphicon glyphicon-remove icon"></span> Delete Task</a></li>
 						<li class="navbar-text">Current Task Selected:<b>
 						<?php
-						//require("functions/connect.php");
 						$current_task = $_GET['task'];
 						if($current_task){
-						$query = "SELECT `task_title` FROM `tasks` WHERE task_id = $current_task";
-						//$query = mysql_query($query);
-						//$selected_task = mysql_result($query, 0);
+						$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+						$query = mysqli_query($DataConnect, "SELECT `task_title` FROM `tasks` WHERE task_id = $current_task");
+						$selected_task = $query->fetch_row()[0];
 						echo $selected_task;}else
 						echo "None";
 						?></b></li>
 						<li class="pull-right"><a href="?tab=subtasks&project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>">Subtasks</a></li>
-					</ul><div class="container">
+					</ul>
+					<div class="container">
 					<h3>Tasks</h3>
 					 <table class="table">
 							<tr>
@@ -107,7 +108,79 @@
 							}
 						}else
 							echo "Their are no tasks associated with this project";
-						  ?>
+						
+						
+						if($_GET['action'] == 'new_task'){
+							if(isset($_POST['task_title'])){
+								if(isset($_POST['task_deadline'])){
+									if(isset($_POST['task_details'])){
+										$TempTask = new Task();
+										$TempTask->accountID = $userid;
+										$TempTask->projectID = $_GET['project'];
+										$TempTask->taskTitle = $_POST['task_title'];
+										$TempTask->taskDeadline = $_POST['task_deadline'];
+										$TempTask->taskDescription = $_POST['task_details'];
+										$TempTaskResult = $TempTask->Create();
+										if($TempTaskResult){
+											echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=tasks&project=$TempTask->projectID&error=success&error_text=Your+Task+<b>$TempTask->taskTitle</b>+has+been+created+successfully.'>";
+										}
+									}
+								}
+							}
+						}
+						
+						if($_GET['action'] == 'edit_task'){
+							if(isset($_POST['task_title'])){
+								if(isset($_POST['task_deadline'])){
+									if(isset($_POST['task_details'])){
+										$TempTask = new Task();
+										$TempTask->accountID = $userid;
+										$TempTask->projectID = $_GET['project'];
+										$TempTask->taskID = $_GET['task'];
+										$TempTask->taskTitle = $_POST['task_title'];
+										$TempTask->taskDeadline = $_POST['task_deadline'];
+										$TempTask->taskDescription = $_POST['task_details'];
+										$TempTaskResult = $TempTask->Update();
+										if($TempTaskResult){
+											echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=tasks&project=$TempTask->projectID&task=$TempTask->taskID&error=success&error_text=Your+Task+<b>$TempTask->taskTitle</b>+has+been+updated+successfully.'>";
+										}
+									}
+								}
+							}
+						}
+						
+						if($_GET['action'] == 'delete_task'){
+							if($_GET['task']){
+								$TempTask = new Task();
+								$TempTask->accountID = $userid;
+								$TempTask->projectID = $_GET['project'];
+								$TempTask->taskID = $_GET['task'];
+								$TempTaskResult = $TempTask->Delete();
+								if($TempTaskResult){
+									echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=tasks&project=$TempTask->projectID&task=$TempTask->taskID&error=success&error_text=Your+Task+<b>$selected_task</b>+has+been+deleted+successfully.'>";
+								}					
+							}else{
+								echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=tasks&project=".$_GET['project']."&error=danger&error_text=Please+select+a+task+first.'>";	
+							}
+						}
+						
+							if($_GET['action'] == 'assign_task'){
+							if($_GET['task']){
+								$TempTask = new Task();
+								$TempTask->accountID = $userid;
+								$TempTask->projectID = $_GET['project'];
+								$TempTask->taskID = $_GET['task'];
+								$Users = $_POST['users'];
+								$TempTaskResult = $TempTask->Assign($Users);
+								if($TempTaskResult){
+									echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=tasks&project=$TempTask->projectID&task=$TempTask->taskID&error=success&error_text=Your+Task+<b>$selected_task</b>+has+been+assigned+successfully.'>";
+								}					
+							}else{
+								echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=tasks&project=".$_GET['project']."&error=danger&error_text=Please+select+a+task+first.'>";	
+							}
+						}
+						
+						?>
 						    </table>
 					</div>
 				</div>
@@ -120,14 +193,14 @@
 							<li class="<?php error_reporting(0); if(!$_GET['subtask']){ echo "disabled";}?>"><a href="functions/delsubtask.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>&subtask=<?php echo $_GET['subtask'];?>">Delete Subtask</a></li>
 							<li class="navbar-text">Current Task Selected:<b>
 						<?php
-						//require("functions/connect.php");
+						/*require("functions/connect.php");
 						$current_task = $_GET['subtask'];
 						if($current_task){
 						$query = "SELECT `task_title` FROM `subtasks` WHERE subtask_id = $current_task";
 						//$query = mysql_query($query);
 						//$selected_task = mysql_result($query, 0);
 						echo $selected_task;}else
-						echo "None";
+						echo "None";*/
 						?></b></li>
 						</ul>
 						<div class="container">
@@ -143,7 +216,7 @@
 								</tr>
 								<?php 
 							$task_id = $_GET['task'];
-							//require("functions/connect.php");
+							/*require("functions/connect.php");
 							//$query = "SELECT * FROM subtasks WHERE task_id='$task'";
 							$query = "SELECT * FROM subtask_mapping, subtasks WHERE t_id = '$task_id' AND st_id= subtask_id";
 							//$query = mysql_query($query);
@@ -178,7 +251,7 @@
 							}
 							else
 								echo "Their are no subtasks associated with this task";
-						  ?>
+						 */ ?>
 							</table>
 						</div>
 					</div>

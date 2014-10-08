@@ -6,7 +6,7 @@
 	</footer>
 	
 	 <!-- Modal -->
-	<div class="modal fade" id="new_project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--	<div class="modal fade" id="new_project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -50,7 +50,7 @@
 						</div>
 						<ul class="list-group">
 						<?php 
-							//require("functions/connect.php");
+							/*require("functions/connect.php");
 							$query = "SELECT * FROM client_accounts WHERE 1";
 							$query = mysql_query($query);
 							$numrows = mysql_num_rows($query);
@@ -81,7 +81,7 @@
 							}
 							else
 								echo "No Users Found";
-						  ?>
+						 */ ?>
 						  </ul>
 						 </div>
 						</div>
@@ -98,8 +98,8 @@
 					</form>
 				</div>
 			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+<!--		</div><!-- /.modal-dialog -->
+<!--	</div><!-- /.modal -->
 	
 	<!-- Modal -->
 	<div class="modal fade" id="new_task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -111,14 +111,14 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form method="post" action="functions/newtask.php?project=<?php echo $_GET['project'];?>" role="form">
+						<form method="post" action="edit.php?tab=tasks&project=<?php echo $_GET['project'];?>&action=new_task" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
 							<label for="project_name">Task Title</label>
-							<input type="text" class="form-control" id="project_name" name="task_title"  style="width:50%;" placeholder="Task Title" value=""/>
+							<input type="text" class="form-control" id="task_title" name="task_title"  style="width:50%;" placeholder="Task Title" value=""/>
 						  </div>
 						  <label for="deadline">When is this task due to be finished?</label>
-							<input type="date" class="form-control" style="width:50%;" id="deadline" name="deadline" value=""/>
+							<input type="date" class="form-control" style="width:50%;" id="deadline" name="task_deadline" value=""/>
 						  <div class="form-group">
 							<label for="description">Task Details</label>
 							<textarea type="text" class="form-control" id="description" name="task_details" style="width:100%; max-width:100%; max-height:300px;" placeholder="Task Details" value=""></textarea>
@@ -136,7 +136,7 @@
 	</div><!-- /.modal -->
 	
 		<!-- Modal -->
-	<div class="modal fade" id="new_subtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!--<div class="modal fade" id="new_subtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -145,7 +145,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form method="post" action="functions/newsubtask.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task']; ?>" role="form">
+						<form method="post" action="functions/newsubtask.php?project=<?php //echo $_GET['project'];?>&task=<?php //echo $_GET['task']; ?>" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
 							<label for="project_name">SubTask Title</label>
@@ -166,11 +166,11 @@
 					</form>
 				</div>
 			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	<!--	</div><!-- /.modal-dialog -->
+	<!--</div><!-- /.modal -->
 	
 	<!-- Modal -->
-	<div class="modal fade" id="new_milestone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!--<div class="modal fade" id="new_milestone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -179,7 +179,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form method="post" action="functions/newmilestone.php?project=<?php echo $_GET['project'];?>" role="form">
+						<form method="post" action="functions/newmilestone.php?project=<?php //echo $_GET['project'];?>" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
 							<label for="project_name">Milestone Title</label>
@@ -200,8 +200,8 @@
 					</form>
 				</div>
 			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+		<!--</div><!-- /.modal-dialog -->
+	<!--</div><!-- /.modal -->
 	
 	<!-- Modal -->
 	<div class="modal fade" id="edit_task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -210,31 +210,37 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">Editing Task: <?php
-					/*$task = $_GET['task'];
-					$task_title = "SELECT `task_title` FROM `tasks` WHERE task_id= '$task'";
-					$task_title = mysql_query($task_title) or die(mysql_error());
-					$task_title = mysql_result($task_title, 0);
-					echo $task_title;*/
+					$task = $_GET['task'];
+					if(isset($task)){
+					$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+					$query = mysqli_query($DataConnect, "SELECT `task_title` FROM `tasks` WHERE task_id = $task");
+					$task_title = $query->fetch_row()[0];
+					echo $task_title;
+					}
 					?></h4>
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form method="post" action="functions/edit_task.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task']; ?>" role="form">
+						<form method="post" action="edit.php?tab=tasks&project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task']; ?>&action=edit_task" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
-						  <?php /*
-						  $task_deadline = "SELECT `deadline` FROM `tasks` WHERE task_id = '$task_id'";
-						  $task_deadline = mysql_query($task_deadline);
-						  $task_deadline = mysql_result($task_deadline, 0);
-						 */ ?>
+						  <?php 
+						 if(isset($task)){
+						 $DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+						 $query = mysqli_query($DataConnect, "SELECT `deadline` FROM `tasks` WHERE task_id = $task");
+						 $task_deadline = $query->fetch_row()[0];
+					 	 $query = mysqli_query($DataConnect, "SELECT `task_details` FROM `tasks` WHERE task_id = $task");
+					  	 $task_description = $query->fetch_row()[0];
+						 }
+						 ?>
 							<label for="project_name">Task Title</label>
-							<input type="text" class="form-control" id="project_name" name="task_title"  style="width:50%;" placeholder="Task Title" value=""/>
+							<input type="text" class="form-control" id="project_name" name="task_title"  style="width:50%;" placeholder="Task Title" value="<?php echo $task_title;?>"/>
 						  </div>
 						  <label for="deadline">Task Deadline</label>
-							<input type="date" class="form-control" style="width:50%;" id="date" name="task_date" value=""/>
+							<input type="date" class="form-control" style="width:50%;" id="date" name="task_deadline" value="<?php echo $task_deadline;?>"/>
 						  <div class="form-group">
 							<label for="description">Task Details</label>
-							<textarea type="text" class="form-control" id="description" name="task_details" style="width:100%; max-width:100%; max-height:300px;" placeholder="Task Details" value=""></textarea>
+							<textarea type="text" class="form-control" id="description" name="task_details" style="width:100%; max-width:100%; max-height:300px;" placeholder="Task Details" value=""><?php echo $task_description; ?></textarea>
 						  </div>
 						</div>
 					</div>
@@ -249,7 +255,7 @@
 	</div><!-- /.modal -->
 	
 	<!-- Modal -->
-	<div class="modal fade" id="edit_subtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!--<div class="modal fade" id="edit_subtask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -264,7 +270,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form method="post" action="functions/edit_subtask.php?project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task']; ?>&subtask=<?php echo $_GET['subtask']; ?>" role="form">
+						<form method="post" action="functions/edit_subtask.php?project=<?php //echo $_GET['project'];?>&task=<?php //echo $_GET['task']; ?>&subtask=<?php //echo $_GET['subtask']; ?>" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
 						  <?php /*
@@ -290,10 +296,10 @@
 					</form>
 				</div>
 			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	<!--	</div><!-- /.modal-dialog -->
+	<!--</div><!-- /.modal -->
 	
-		<div class="modal fade" id="edit_milestone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!--	<div class="modal fade" id="edit_milestone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -308,7 +314,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form method="post" action="functions/edit_milestone.php?project=<?php echo $_GET['project'];?>&milestone=<?php echo $_GET['milestone']; ?>" role="form">
+						<form method="post" action="functions/edit_milestone.php?project=<?php //echo $_GET['project'];?>&milestone=<?php //echo $_GET['milestone']; ?>" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
 						  <?php /*
@@ -334,9 +340,9 @@
 					</form>
 				</div>
 			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-</div>
+	<!--	</div><!-- /.modal-dialog -->
+	<!--</div><!-- /.modal -->
+<!-- </div>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

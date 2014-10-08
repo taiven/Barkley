@@ -1,6 +1,6 @@
 <?php
 class Task{
-	
+	public $accountID;
 	public $projectID;
 	public $taskID;
 	public $taskTitle;
@@ -11,11 +11,57 @@ class Task{
 	public $taskComplete;
 	public $taskDate;
 	
-	public function Create(){}
-	public function Update(){}
-	public function Delete(){}
+	public function Create(){
+		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+		if(isset($this->accountID) && isset($this->projectID) && isset($this->taskTitle) && isset($this->taskDescription) && isset($this->taskDeadline)){
+			$results = mysqli_query($DataConnect, "INSERT INTO `tasks` VALUES ('', '".$this->projectID."', '".$this->taskTitle."', '".$this->taskDescription."', '0', '0', '".$this->taskDeadline."', '0', 'NOW()')");
+			if($results){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	public function Update(){
+		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+		if(isset($this->accountID) && isset($this->projectID) && isset($this->taskTitle) && isset($this->taskDescription) && isset($this->taskDeadline)){
+			$results = mysqli_query($DataConnect, "UPDATE `tasks` SET `task_title`='".$this->taskTitle."',`task_details`='".$this->taskDescription."', `deadline`='".$this->taskDeadline."' WHERE task_id = '".$this->taskID."'");
+			if($results){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	public function Delete(){
+		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+		if(isset($this->taskID)){
+			$results = mysqli_query($DataConnect, "DELETE FROM `tasks` WHERE task_id = '".$this->taskID."'");
+			if($results){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
 	public function Restore(){}
-	public function Assign(){}
+	public function Assign($Users = array()){
+		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+		
+		foreach ($Users as $User){
+			$UserList .= $prefix . '"' . $User . '"';
+			$prefix = ', ';
+		}
+		
+		if(isset($this->taskID)){
+			$results = mysqli_query($DataConnect, "UPDATE `tasks` SET assignedto ='$UserList', assignedby='$this->accountID' WHERE task_id = '".$this->taskID."'");
+			if($results){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
 	
 	public function ReturnAll($ProjectID = null){
 		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');

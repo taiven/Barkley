@@ -131,7 +131,7 @@ if(!$cemail && !$userid){
 						</div>
 				</div>
 				<?php 
-							$query = "SELECT * FROM client_accounts WHERE account_id='$userid'";
+						/*	$query = "SELECT * FROM client_accounts WHERE account_id='$userid'";
 							$query = mysql_query($query);
 							$numrows = mysql_num_rows($query);
 							if ($numrows > 0){
@@ -148,30 +148,30 @@ if(!$cemail && !$userid){
 							else
 								//echo "<META http-equiv='refresh' content='0;URL=projects.php?error=danger&error_text=Please+contact+customer+support+FATAL+error.'>";
 
-						  ?>
+						  */?>
 				<div class="tab-pane" id="account">
 					<h3 class="sidebar_title">My Account</h3>
 					<div class="container">
 						<form method="post" action="functions/account.php" role="form">
 							<div class="form-group">
 								<label for="first_name">First Name</label>
-								<input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" value="<?php echo $my_account_first_name;?>"/>
+								<input type="text" class="form-control" id="first_name" name="first_name" placeholder="First name" value="<?php //echo $my_account_first_name;?>"/>
 								<label for="last_name">Last Name</label>
-								<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" value="<?php echo $my_account_last_name;?>"/>
+								<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" value="<?php //echo $my_account_last_name;?>"/>
 								<label for="email_address">Email Address</label>
-								<input type="text" class="form-control" id="email_address" name="email_address" placeholder="Email address" value="<?php echo $my_account_email;?>"/>
+								<input type="text" class="form-control" id="email_address" name="email_address" placeholder="Email address" value="<?php //echo $my_account_email;?>"/>
 								<label>Gender</label>
 								<div class="btn-group" data-toggle="buttons">
-									<label class="btn btn-primary <?php if($my_account_gender == 0) echo "active";?>">
+									<label class="btn btn-primary <?php //if($my_account_gender == 0) echo "active";?>">
 										<input type="radio" name="gender" id="male" value="0"> Male
 									</label>
-									<label class="btn btn-primary <?php if($my_account_gender == 1) echo "active";?>">
+									<label class="btn btn-primary <?php //if($my_account_gender == 1) echo "active";?>">
 										<input type="radio" name="gender" id="female" value="1"> Female
 									</label>
 								</div>
 								<label for="phone_number">Phone</label>
-								<input type="text" class="form-control"  id="phone_number" name="phone_number" placeholder="Phone" value="<?php echo $my_account_phone;?>" />
-								<input type="hidden" name="account_id" value="<?php echo $userid ?>"/>
+								<input type="text" class="form-control"  id="phone_number" name="phone_number" placeholder="Phone" value="<?php //echo $my_account_phone;?>" />
+								<input type="hidden" name="account_id" value="<?php //echo $userid ?>"/>
 								<button class="btn btn-success account_button" type="submit">Save Changes</button>
 							</div>
 						</form>
