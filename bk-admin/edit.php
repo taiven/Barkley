@@ -337,6 +337,90 @@
 						  </table>
 					</div>
 				</div>
+				
+				<div class="tab-pane <?php if($_GET['tab'] == "meetings"){echo "active";}?>" id="meetings">
+				<ul class="nav nav-tabs" style="margin-left:70px;">
+					<li><a href="#new_meeting" data-toggle="modal"><span class="glyphicon glyphicon-folder-close icon"></span> New Meeting</a></li>
+					<li class="<?php error_reporting(0); if(!$_GET['meeting']){ echo "disabled";}?>"><a href="#edit_meeting" data-toggle="modal"><span class="glyphicon glyphicon-edit icon"></span> Edit Meeting</a></li>
+					<li class="<?php error_reporting(0); if(!$_GET['meeting']){ echo "disabled";}?>"><a href="edit.php?tab=meetings&project=<?php echo $_GET['project'];?>&meeting=<?php echo $_GET['meeting']?>&action=delete_meeting"><span class="glyphicon glyphicon-remove icon"></span> Delete Meeting</a></li>
+					<li class="navbar-text">Current Meeting Selected:<b>
+					<?php
+					$current_meeting = $_GET['meeting'];
+					if($current_meeting){
+					$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+					$query = mysqli_query($DataConnect, "SELECT `meeting_title` FROM `meetings` WHERE meeting_id = $current_meeting");
+					$selected_meeting = $query->fetch_row()[0];
+					echo $selected_meeting;}else
+					echo "None";
+					?></b></li>
+				</ul>
+					<div class="container">
+						<h3>Meetings</h3>
+						<table class="table">
+							<tr>
+								<th>Meeting Name</th>
+								<th>Meeting Details</th>
+								<th>Date</th>
+								<th>Select</th>
+							</tr>
+							<?php
+							$Meetings = new Meeting();
+							if($Meetings){$Meeting_Info = $Meetings->ReturnAll($_GET['project']);}
+						
+							if($Meeting_Info){
+								foreach ($Meeting_Info as $Meetings){
+									echo "<tr>
+											<td>".$Meetings->meetingTitle."</td>
+											<td>".$Meetings->meetingDetails."</td>
+											<td>".$Meetings->meetingDate."</td>
+											<td><a class='btn btn-primary' href='?tab=meetings&project=".$_GET['project']."&meeting=".$Meetings->meetingID."'>Select</a></td>
+										</tr>";
+								}
+							}else{
+								echo "There are no meetings scheduled in this project"; }
+								
+							if($_GET['action'] == "new_meeting"){
+								if($_POST['meeting_title']){
+									if($_POST["meeting_date"]){
+										if($_POST["meeting_details"]){
+											$TempMeeting = new Meeting();
+											$TempMeeting->accountID = $userid;
+											$TempMeeting->projectID = $_GET['project'];
+											$TempMeeting->meetingTitle = $_POST['meeting_title'];
+											$TempMeeting->meetingDetails = $_POST["meeting_details"];
+											$TempMeeting->meetingDate = $_POST["meeting_date"];
+											$TempMeetingResults = $TempMeeting->Create();
+
+												if($TempMeetingResults){
+												echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=meetings&project=$TempMeeting->projectID&error=success&error_text=Your+Meeting+has+been+scheduled+successfully.'>";
+											}else{
+												echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=meetings&project=$TempMeeting->projectID&error=danger&error_text=Your+Milestone+could+not+be+scheduled+an+error+occured.'>";
+											}
+										}
+									}
+								}
+							}
+								
+							if($_GET['action'] == "delete_meeting"){
+								if($_GET['meeting']){
+									$TempMeeting = new Meeting();
+									$TempMeeting->accountID = $userid;
+									$TempMeeting->projectID = $_GET['project'];
+									$TempMeeting->meetingID = $_GET['meeting'];
+									$TempMeetingResults = $TempMeeting->Delete();
+
+									if($TempMeetingResults){
+										echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=meetings&project=$TempMeeting->projectID&error=success&error_text=Your+Meeting+<b>$selected_meeting</b>+has+been+deleted+successfully.'>";
+									}else{
+										echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=meetings&project=$TempMeeting->projectID&error=danger&error_text=Your+Meeting+<b>$selected_meeting</b>+could+not+be+deleted+an+error+occured.'>";
+									}
+								}
+							}
+							?>
+						</table>
+					</div>
+				</div>
+				
 				<div class="tab-pane <?php if($_GET['tab'] == "timer"){echo "active";}?>" id="timer">
 						<ul class="nav nav-tabs" style="margin-left:70px;">
 						<li><a id="startPause" href="#" onclick="startPause();"><span class="glyphicon glyphicon-play icon"></span> Start Timer</a></li>
@@ -346,11 +430,6 @@
 					<div class="container">
 					<h3>Timer</h3>
 					<p id="output"></p>
-					</div>
-				</div>
-				<div class="tab-pane <?php if($_GET['tab'] == "meetings"){echo "active";}?>" id="meetings">
-					<div class="container">
-						<h3>Meetings</h3>
 					</div>
 				</div>
 																		<!-- End Tabs -->

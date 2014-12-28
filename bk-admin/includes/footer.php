@@ -342,6 +342,41 @@
 			</div><!-- /.modal-content -->
 	<!--	</div><!-- /.modal-dialog -->
 	<!--</div><!-- /.modal -->
+	
+	<!-- Modal -->
+	<div class="modal fade" id="new_meeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Schedule a Meeting</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<form method="post" action="edit.php?tab=meetings&project=<?php echo $_GET['project'];?>&action=new_meeting" role="form">
+						<div id="newProjectForm">
+						  <div class="form-group">
+							<label for="meeting_title">Meeting Title</label>
+							<input type="text" class="form-control" id="meeting_title" name="meeting_title"  style="width:50%;" placeholder="Meeting Title" value=""/>
+						  </div>
+						  <label for="deadline">When is this meeting to be attended?</label>
+							<input type="date" class="form-control" style="width:50%;" id="date" name="meeting_date" value=""/>
+						  <div class="form-group">
+							<label for="description">Meeting Details</label>
+							<textarea type="text" class="form-control" id="description" name="meeting_details" style="width:100%; max-width:100%; max-height:300px;" placeholder="Meeting Details" value=""></textarea>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="nextstep2" type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
 <!-- </div>
     <!-- Le javascript
     ================================================== -->
