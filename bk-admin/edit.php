@@ -5,7 +5,7 @@
 			<li><a href="?tab=tasks&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list-alt icon"></span> Tasks</a></li>
 			<li><a href="?tab=milestones&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list icon"></span> Milestones</a></li>
 			<li><a href="?tab=meetings&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-tree-conifer icon"></span> Meetings</a></li>
-			<li><a href="?tab=timer&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-time icon"></span>Timer</a></li>
+			<!--<li><a href="?tab=timer&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-time icon"></span>Timer</a></li>-->
 			</ul>
 			<?php error_reporting(0); if($_GET['error']){ ?><div class='alert alert-<?php error_reporting(0); if($_GET['error']){echo $_GET['error'];}else echo "danger";?>'>
 			   <button type='button' class='close' data-dismiss='alert'>&times;</button>
