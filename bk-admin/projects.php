@@ -44,13 +44,16 @@
 							if($Project_Results){
 								foreach ($Project_Results as $Project){
 									//echo "Returned Project <b>\"".$Project->projectName ."\"</b> from your database.</br>";
-									echo "<tr>
-											<td>".$Project->projectName."</td>
-											<td>".$Project->projectStart."</td>
-											<td>".$Project->projectTasks."</td>
-											<td>".$Project->projectDeadline."</td>
-											<td>".$Project->projectDescription."</td>
-										</tr>";
+									
+									if($Project->projectArchived == 0){
+										echo "<tr>
+												<td>".$Project->projectName."</td>
+												<td>".$Project->projectStart."</td>
+												<td>".$Project->projectTasks."</td>
+												<td>".$Project->projectDeadline."</td>
+												<td>".$Project->projectDescription."</td>
+											</tr>";
+									}
 								}
 							}
 							
@@ -109,14 +112,16 @@
 							if($Project_Results){
 								foreach ($Project_Results as $Project){
 									//echo "Returned Project <b>\"".$Project->projectName ."\"</b> from your database.</br>";
-									echo "<tr>
-											<td>".$Project->projectName."</td>
-											<td>".$Project->projectStart."</td>
-											<td>".$Project->projectTasks."</td>
-											<td>".$Project->projectDeadline."</td>
-											<td>".$Project->projectDescription."</td>
-											<td><a class='btn btn-primary' href='?tab=myprojects&project=".$Project->projectID."'>Select</a></td>
-										</tr>";
+									if($Project->projectArchived == 0){
+										echo "<tr>
+												<td>".$Project->projectName."</td>
+												<td>".$Project->projectStart."</td>
+												<td>".$Project->projectTasks."</td>
+												<td>".$Project->projectDeadline."</td>
+												<td>".$Project->projectDescription."</td>
+												<td><a class='btn btn-primary' href='?tab=myprojects&project=".$Project->projectID."'>Select</a></td>
+											</tr>";
+									}
 								}
 							}
 							?>
