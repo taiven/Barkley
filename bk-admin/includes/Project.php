@@ -43,9 +43,9 @@ class Project{
 				$results = mysqli_query($DataConnect, "DELETE FROM `subtasks` WHERE task_id='$task'");
 			}
 	}
-	public function Archive($ProjectID=null, $Value=true){
+	public function Archive(){
 		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
-		$results = mysqli_query($DataConnect, "UPDATE `projects` SET archived='$Value' WHERE project_id='$ProjectID'");
+		$results = mysqli_query($DataConnect, "UPDATE `projects` SET archived='1' WHERE project_id='$this->projectID'");
 		
 		if($results){
 			return true;

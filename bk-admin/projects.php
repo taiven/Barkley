@@ -4,7 +4,7 @@
 			<li><a href="?tab=myprojects"><span class="glyphicon glyphicon-user icon"></span> My Projects</a></li>
 			<li><a data-toggle="modal" href="#new_project"><span class="glyphicon glyphicon-folder-close icon"></span> New Project</a></li>
 			<li class="<?php error_reporting(0); if(!$_GET['project']){ echo "disabled";}?>"><a href="edit.php?tab=overview&project=<?php error_reporting(0); echo $_GET['project'] ?>"><span class="glyphicon glyphicon-folder-open icon"></span> Edit Project</a></li>
-			<li class="<?php error_reporting(0); if(!$_GET['project']){ echo "disabled";}?>"><a href="functions/archive.php?project=<?php echo $_GET['project'];?>&archived=1"><span class="glyphicon glyphicon-remove icon"></span> Archive Project</a></li>
+			<li class="<?php error_reporting(0); if(!$_GET['project']){ echo "disabled";}?>"><a href="projects.php?tab=projects&project=<?php echo $_GET['project'];?>&action=archive_project"><span class="glyphicon glyphicon-remove icon"></span> Archive Project</a></li>
 			<li class="navbar-text">Current Project Selected: <b><?php if($_GET['project']){
 						$current_project = $_GET['project'];
 						$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
@@ -55,13 +55,9 @@
 							}
 							
 							if($_GET['action'] == 'new_project'){
-							echo "Creating new Project.";
 								if(isset($_POST['project_title'])){
-									echo "Has Project Name.";
 									if(isset($_POST['project_deadline'])){
-										echo "Has Project Deadline.";
 										if(isset($_POST['project_details'])){
-											echo "Has Project Details.";
 											$TempProject = new Project();
 											$TempProject->accountID = $userid;
 											$TempProject->projectName = $_POST['project_title'];
@@ -73,6 +69,16 @@
 											}
 										}
 									}
+								}
+							}
+							
+							if($_GET['action'] == 'archive_project'){
+								$TempProject = new Project();
+								$TempProject->accountID = $userid;
+								$TempProject->projectID = $_GET['project'];
+								$TempProjectResult = $TempProject->Archive();
+								if($TempProjectResult){
+									echo "<META http-equiv='refresh' content='0;URL=projects.php?tab=projects&error=success&error_text=Your+Project+has+been+archived+successfully.'>";
 								}
 							}
 						  ?>
