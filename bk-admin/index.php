@@ -1,9 +1,16 @@
 <?php include("includes/header.php");?>
-	
+	<style> #main_container{ background-color: #1D6D7A;} a{color: #FFF;}</style>
 	<div id="Slider" class="carousel slide">
+	
+		<ol class="carousel-indicators">
+			<li data-target="#Slider" data-slide-to="0" class="active"></li>
+			<li data-target="#Slider" data-slide-to="1"></li>
+			<li data-target="#Slider" data-slide-to="2"></li>
+		</ol>
+	
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="http://placehold.it/1490x300/000/000.png&text=_" alt="First slide">
+				<img src="http://placehold.it/1490x425/70EBFF/70EBFF.png&text=_" alt="First slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h2>Welcome to the Developers Panel</h2>
@@ -13,7 +20,7 @@
 				</div>
 			</div>
 			<div class="item">
-				<img src="http://placehold.it/1490x300/000/000.png&text=_" alt="Second slide">
+				<img src="http://placehold.it/1490x425/70EBFF/70EBFF.png&text=_" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h2>Version 1.7.0 Beta</h2>
@@ -23,7 +30,7 @@
 				</div>
 			</div>
 			<div class="item">
-				<img src="http://placehold.it/1490x300/000/000.png&text=_" alt="Third slide">
+				<img src="http://placehold.it/1490x425/70EBFF/70EBFF.png&text=_" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h2>RoadMap & Changelog</h2>
@@ -33,32 +40,10 @@
 				</div>
 			</div>
 		</div>
-		<a class="left carousel-control" href="#Slider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-		<a class="right carousel-control" href="#Slider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		<!--<a class="left carousel-control" href="#Slider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		<a class="right carousel-control" href="#Slider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>-->
 	</div><!-- /.carousel -->
-	<nav class="fast_nav navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="fast_nav_brand navbar-brand" href="#">Quick Links</a>
-  </div>
-
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="fast_nav_ul nav navbar-nav">
-      <li><a href="http://wubcrate.com">Wubcrate</a></li>
-      <li><a href="http://blog.wubcrate.com">Blog</a></li>
-      <li><a href="http://support.wubcrate.com">Support</a></li>
-      <li><a href="http://community.wubcrate.com">Community</a></li>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
-<ul class="nav nav-tabs front-page" style="margin-top: -1.6%;">
+<ul class="nav nav-tabs front-page" style="margin-top: 0;">
 	<li><a href="#about" data-toggle="tab"><span class="glyphicon glyphicon-home icon"></span> About</a></li>
 	<li><a href="#track" data-toggle="tab"><span class="glyphicon glyphicon-signal icon"></span> Track</a></li>
 	<li><a href="#collaborate" data-toggle="tab"><span class="glyphicon glyphicon-envelope icon"></span> Collaborate</a></li>

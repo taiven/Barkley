@@ -15,7 +15,8 @@ html, body {
 	width:100%;
 	background-color:#ffffff; /* DO NOT REMOVE THIS; or you'll have issue w/ the scrollbar, when the mouse pointer is on a white space */
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 	height:100%;	/* this will make sure that the height will extend at the bottom */
 	position:absolute; /* container div must be absolute, for our fixed bar to work */
+	margin-top: 20px;
 }

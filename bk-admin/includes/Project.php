@@ -19,6 +19,12 @@ class Project{
 				$project_id = mysqli_insert_id($DataConnect);
 				$DefAction = mysqli_query($DataConnect, "INSERT INTO `project_mapping` VALUES ('', '$project_id', '$this->accountID', 'NOW()')");
 			}
+			/*$Log = new Activity();
+			$Log->accountID = $this->accountID;
+			$Log->action = "ADD";
+			$Log->type = "PROJECT";
+			$Log->id = $this->projectID;
+			$Log::Log(); //Test*/
 		}
 		return "1";
 	}

@@ -19,7 +19,7 @@ if(!$cemail && !$userid){
     <meta name="author" content="Wubcrate">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link href="css/styles.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 	<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
@@ -64,7 +64,7 @@ if(!$cemail && !$userid){
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="index.php"><span class="glyphicon glyphicon-dashboard icon"></span> Dashboard</a>
-              <li><a href="activity.php"><span class="glyphicon glyphicon-flash icon"></span> Activity</a></li>
+              <!--<li><a href="activity.php"><span class="glyphicon glyphicon-flash icon"></span> Activity</a></li>-->
               <li><a href="projects.php?tab=projects"><span class="glyphicon glyphicon-folder-close icon"></span> Projects</a></li>
               <!--<li><a href="database.php?tab=overview"><span class="glyphicon glyphicon-save icon"></span> Database</a></li>-->
               <li><a href="community.php"><span class="glyphicon glyphicon-globe icon"></span> Community</a></li>

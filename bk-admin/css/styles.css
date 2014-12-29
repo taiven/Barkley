@@ -114,12 +114,12 @@ Example Media Query
 	background-color: #FFF;
 	}
 	.navbar-default .navbar-nav>li>a {
-	color: #0092CA;
-	/*text-shadow: -1px 0px #006FFD;*/
+	color: #FFF;
+	font-size: 17px;
+	font-weight: normal;
 	}
 	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
-	color: #006AA5;
-	background-color: #999;
+	border-bottom: 4px solid #44B5C7;
 	}
 	.form-control {
 	color: #428bca;
@@ -127,23 +127,28 @@ Example Media Query
 	border-radius: 4px;
 	width: 138%;
 	}
-	.fast_nav{
-	border-radius: 0;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	margin-top: -30px;
-	background-color: #222 !important;
-	border: none;
-	}
-	.fast_nav_brand{
-	margin-left: 160px;
-	}
-	.fast_nav_ul{
-	/*margin-left:50px;*/
+	.navbar-brand {
+	float: left;
+	height: 70px;
+	padding: 15px 15px;
+	font-size: 28px;
+	line-height: 36px;
+	color: #FFF !important;
 	}
 	.navbar-default {
-	background-color: #FFF;
-	border-color: #0088ff;
+	background-color: #1D6D7A;
+	border-color: #44B5C7;
+	}
+	.navbar{
+	height: 70px;
+	margin-bottom: 40px;
+	}
+	.navbar-default .navbar-collapse{
+	margin-top: 4px;
+	}
+	.navbar-nav>li>a {
+	padding-top: 20px;
+	padding-bottom: 20px;
 	}
 	.page-header {
 	border-bottom: none;
@@ -178,7 +183,7 @@ Example Media Query
 	border-radius: 0;
 	}
 	.sidebar-wrap{
-	background-color: #001631;
+	background-color: #66350E;
 	right: -20%;
 	height: 100%;
 	width: 20%;
@@ -202,8 +207,7 @@ Example Media Query
 	}
 	.sidebar-wrap .panel-heading{
 	color: #333;
-	background-color: #209DFF;
-	border-color: #000507;
+	background-color: #B2713D;
 	position: fixed;
 	width: 19.9%;
 	z-index: 0;
@@ -230,7 +234,7 @@ Example Media Query
 	}
 	.sidebar_button{
 	position: fixed;
-	top: 1%;
+	top: 2%;
 	right: 2%;
 	z-index: 1031;
 	}
@@ -265,7 +269,7 @@ Example Media Query
 	margin-left:35%;
 	}
 	.icon{
-	color:#111;
+	color:#FFF;
 	}
 	.disabled .icon{
 	color:inherit;

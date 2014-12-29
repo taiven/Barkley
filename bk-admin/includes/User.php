@@ -57,7 +57,7 @@ class User{
 			
 			
 			$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
-			$result = mysqli_query($DataConnect,"SELECT * FROM client_accounts WHERE email='$Email' AND password='$Password'");
+			$result = mysqli_query($DataConnect,"SELECT * FROM `accounts` WHERE email='$Email' AND password='$Password'");
 
 			while($row = mysqli_fetch_array($result)) {
 				$User_ID = $row['account_id'];
