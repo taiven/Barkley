@@ -2,6 +2,7 @@
 
 class Project{
 	
+	public $accountID;
 	public $projectID;
 	public $projectName;
 	public $projectStart;
@@ -10,15 +11,16 @@ class Project{
 	public $projectArchived;
 	public $projectTasks;
 	
-	public function Create($AccountID, $ProjectName, $ProjectStart, $ProjectDeadline, $ProjectDescription, $ProjectArchived){
+	public function Create(){
 		$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
-		if(isset($ProjectName) && isset($ProjectStart) && isset($ProjectDeadline) && isset($ProjectDescription) && isset($ProjectArchived)){
-			$results = mysqli_query($DataConnect, "INSERT INTO `projects` '', '0', '$ProjectName','$ProjectStart','$ProjectDescription','$ProjectDeadline','$ProjectArchived'");
-			$Project = $results->insert_id;
-			if($Project){
-				$DefAction = mysqli_query($DataConnect, "INSERT INTO `project_mapping` '', '$Project', '$AccountID', 'NOW()'");
+		if(isset($this->accountID) && isset($this->projectName) && isset($this->projectDescription) && isset($this->projectDeadline)){
+			$results = mysqli_query($DataConnect, "INSERT INTO `projects` VALUES ('', '0', '$this->projectName', 'NOW()', '$this->projectDescription', '$this->projectDeadline', '0')");
+			if($results){
+				$project_id = mysqli_insert_id($DataConnect);
+				$DefAction = mysqli_query($DataConnect, "INSERT INTO `project_mapping` VALUES ('', '$project_id', '$this->accountID', 'NOW()')");
 			}
 		}
+		return "1";
 	}
 	
 	public function Update($ProjectID=null,$ProjectName, $ProjectStart, $ProjectDeadline, $ProjectDescription, $ProjectArchived){

@@ -6,7 +6,7 @@
 	</footer>
 	
 	 <!-- Modal -->
-<!--	<div class="modal fade" id="new_project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="new_project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -14,92 +14,29 @@
 					<h4 class="modal-title">Create a New Project</h4>
 				</div>
 				<div class="modal-body">
-					<div class="container">
-						<form method="post" action="functions/newproject.php" role="form">
+				<div class="container">
+						<form method="post" action="projects.php?tab=projects&action=new_project" role="form">
 						<div id="newProjectForm">
 						  <div class="form-group">
-							<label for="project_name">Project Name</label>
-							<input type="text" class="form-control" id="project_name" name="project_name"  style="width:50%;" placeholder="Project Title" value=""/>
+							<label for="project_title">Project Name</label>
+							<input type="text" class="form-control" id="project_title" name="project_title"  style="width:50%;" placeholder="Project Title" value=""/>
 						  </div>
-						  <label for="deadline">When is this project due to be finished?</label>
-							<input type="date" class="form-control" style="width:50%;" id="deadline" name="deadline" value=""/>
+						  <label for="project_deadline">When is this project due to be finished?</label>
+							<input type="date" class="form-control" style="width:50%;" id="project_deadline" name="project_deadline" value=""/>
 						  <div class="form-group">
-							<label for="description">Description</label>
-							<textarea type="text" class="form-control" id="description" name="description" style="width:100%; max-width:100%; max-height:300px;" placeholder="Project Description" value=""></textarea>
-						  </div>
-						  <div class="radio">
-							<label>Who is this project for?</label>
-							 <div class="btn-group" data-toggle="buttons">
-							  <label class="btn btn-link">
-								<input type="radio" name="type" id="0" value="1"> Client
-							  </label>
-							  <label class="btn btn-link">
-								<input type="radio" name="type" id="1" value="2"> Partner
-							  </label>
-							  <label class="btn btn-link">
-								<input type="radio" name="type" id="2" value="3"> Internal
-							  </label>
-							</div>
+							<label for="project_details">Description</label>
+							<textarea type="text" class="form-control" id="project_details" name="project_details" style="width:100%; max-width:100%; max-height:300px;" placeholder="Project Description" value=""></textarea>
 						  </div>
 						</div>
-						  
-						<div id="newProjectForm1" style="display:none;">
-						<div class="panel panel-default assign_project">
-						<div class="panel-heading">
-							<h3 class="panel-title">Assign Project</h3>
-						</div>
-						<ul class="list-group">
-						<?php 
-							/*require("functions/connect.php");
-							$query = "SELECT * FROM client_accounts WHERE 1";
-							$query = mysql_query($query);
-							$numrows = mysql_num_rows($query);
-							if ($numrows > 0){
-								
-								while ($row = mysql_fetch_assoc($query)){
-									$user_account_id = $row ['account_id'];
-									$user_first_name = $row ['first_name'];
-									$user_last_name = $row ['last_name'];
-									$user_gender = $row ['gender'];
-									$user_account_type = $row ['account_type'];
-									
-									echo	"
-											<li class='list-group-item'>
-											<div class='media' style='border:none;'>
-												<a class='pull-left' href='#'>
-													<div class='checkbox'><label for='selected_users'><input type='checkbox' name='selected_users[]' value='$user_account_id' style='margin: 25% -40%;'/></label><img class='media-object' src='http://placehold.it/60x60' alt='...'></div>
-												</a>
-												<div class='media-body'>
-													<h4 class='media-heading'>$user_first_name $user_last_name</h4>
-													# of Current Projects:  $user_current_assigned_projects
-												</div>
-											</div>
-											</li>
-											";
-								}
-							
-							}
-							else
-								echo "No Users Found";
-						 */ ?>
-						  </ul>
-						 </div>
-						</div>
-						<div id="newProjectForm2" style="display:none;">
-						<p>Click Submit</p>
-						</div>
-					</div>
+				</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default"onclick="nextFormPage(0)" data-dismiss="modal">Close</button>
-					<button id="nextstep" type="button" onclick="nextFormPage(1)" class="btn btn-primary">Next Step</button>
-					<button id="nextstep1" type="button" onclick="nextFormPage(2)" class="btn btn-primary" style="display:none;">Next Step</button>
-					<button id="nextstep2" type="submit" name="new_project" class="btn btn-primary" style="display:none;" value="create">Submit</button>
+					<button type="submit" name="new_project" class="btn btn-primary" value="submit">Submit</button>
 					</form>
 				</div>
 			</div><!-- /.modal-content -->
-<!--		</div><!-- /.modal-dialog -->
-<!--	</div><!-- /.modal -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	
 	<!-- Modal -->
 	<div class="modal fade" id="new_task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

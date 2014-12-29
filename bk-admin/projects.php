@@ -53,6 +53,28 @@
 										</tr>";
 								}
 							}
+							
+							if($_GET['action'] == 'new_project'){
+							echo "Creating new Project.";
+								if(isset($_POST['project_title'])){
+									echo "Has Project Name.";
+									if(isset($_POST['project_deadline'])){
+										echo "Has Project Deadline.";
+										if(isset($_POST['project_details'])){
+											echo "Has Project Details.";
+											$TempProject = new Project();
+											$TempProject->accountID = $userid;
+											$TempProject->projectName = $_POST['project_title'];
+											$TempProject->projectDeadline = $_POST['project_deadline'];
+											$TempProject->projectDescription = $_POST['project_details'];
+											$TempProjectResult = $TempProject->Create();
+											if($TempProjectResult){
+												echo "<META http-equiv='refresh' content='0;URL=projects.php?tab=projects&error=success&error_text=Your+Project+<b>$TempProject->projectName</b>+has+been+created+successfully.'>";
+											}
+										}
+									}
+								}
+							}
 						  ?>
 						</table>
 					</div>
