@@ -1,5 +1,23 @@
 <?php
-class Anayltic{
+class Activity{
+	
+	public accountID;
+	public action;
+	public type;
+	
+	public static function Log(){
+		if($this->action == "ADD"){
+			$query = "INSERT INTO `log` VALUES ()";
+		}elseif($this->action == "DELETE"){
+			$query = "INSERT INTO `log` VALUES ()";
+		}elseif($this->action == "ARCHIVE"){
+			$query = "INSERT INTO `log` VALUES ()";
+		}
+	}
+	
+	public function ReturnAll(){
+		echo "Functionality coming soon!";
+	}
 	
 	public function Statistics($statistic){
 		switch ($statistic) {
