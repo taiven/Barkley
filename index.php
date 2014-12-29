@@ -38,7 +38,7 @@ require('bk-config.php');
 	<div class="header">
 		<div id="title">Barkley</div>
 	</div>
-	
+	<div class="blur"></div>
     <div class="container">
       <?php
 	
@@ -54,7 +54,7 @@ require('bk-config.php');
 		$form = "
 		<form class='form-signin' action='index.php' method='post' id='Signup'>
 			<div>
-			<center class='form-signin-logo'><img src='http://placehold.it/300x150&text=Barkley' /></center>
+			
 			<!--<div  class='alert alert-$error'><button type='button' class='close' data-dismiss='alert'>&times;</button>$error_text</div>-->
 			<input type='text' class='form-control' placeholder='Email Address' name='cemail' />
 			<input type='password' class='form-control' placeholder='Password' name='password' />
@@ -62,7 +62,7 @@ require('bk-config.php');
 				<!--<p><a href='newuser.php'>Register</a></p>-->
 				<p></p>
 				<p><a href='forgotpass.php'>Forgot your password?</a></p>
-				<p><a href='http://wubcrate.com'>Back to Wubcrate</a></p>
+				<!--<p><a href='http://wubcrate.com'>Back to Wubcrate</a></p>-->
 			</div>
 				</div>
 </form>";

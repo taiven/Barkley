@@ -23,6 +23,7 @@ if(!$cemail && !$userid){
     <link href="css/styles.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 	<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/project.css" />
 
 	<!--[if lte IE 7]>
 	<link type="text/css" rel="stylesheet" media="all" href="site/css/screen_ie.css" />

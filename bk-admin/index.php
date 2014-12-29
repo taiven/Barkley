@@ -10,7 +10,7 @@
 	
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="http://placehold.it/1490x425/70EBFF/70EBFF.png&text=_" alt="First slide">
+				<img src="http://placehold.it/1490x375/70EBFF/70EBFF.png&text=_" alt="First slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h2>Welcome to the Developers Panel</h2>
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 			<div class="item">
-				<img src="http://placehold.it/1490x425/70EBFF/70EBFF.png&text=_" alt="Second slide">
+				<img src="http://placehold.it/1490x375/70EBFF/70EBFF.png&text=_" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h2>Version 1.7.0 Beta</h2>
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			<div class="item">
-				<img src="http://placehold.it/1490x425/70EBFF/70EBFF.png&text=_" alt="Third slide">
+				<img src="http://placehold.it/1490x375/70EBFF/70EBFF.png&text=_" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
 						<h2>RoadMap & Changelog</h2>

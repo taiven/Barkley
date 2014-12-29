@@ -121,6 +121,9 @@ Example Media Query
 	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
 	border-bottom: 4px solid #44B5C7;
 	}
+	.navbar-nav .icon{
+	color:#FFF;
+	}
 	.form-control {
 	color: #428bca;
 	background-color: #222;
@@ -214,6 +217,10 @@ Example Media Query
 	border-radius: 0;
 	margin-top: -38px;
 	}
+	.sidebar-wrap .nav-tabs{
+	width: 100%;
+	margin: 0;
+	}
 	.sidebar-wrap .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus,.nav-tabs>li>a:hover,.nav-tabs>li>a:focus{
 	border-radius: 0;
 	}
@@ -269,7 +276,7 @@ Example Media Query
 	margin-left:35%;
 	}
 	.icon{
-	color:#FFF;
+	color:#111;
 	}
 	.disabled .icon{
 	color:inherit;
@@ -280,4 +287,11 @@ Example Media Query
 	}
 	#main_container{
 	overflow-y:auto !important;
+	}
+	
+	footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 11%;
 	}

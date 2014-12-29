@@ -1,10 +1,9 @@
 /* Sign In Form */
 .form-signin {
 max-width: 330px;
-padding: 15px;
-margin: 5% 0 0 71%;
-background-color: rgba(48, 60, 47, 0.81);
-border-radius: 4px;
+padding: 20px;
+margin: 14% auto;
+background-color: rgba(255, 255, 255, 0.81);
 }
 
 .form-signin .form-signin-heading,
@@ -50,13 +49,16 @@ text-decoration:none;
 body {
 background-image: url('../img/background.jpg');
 background-size: 100% 100%;
+background-position: 0 -46px;
 background-repeat: no-repeat;
-height: 895px;
+height: 690px;
+overflow: hidden;
 }
 
-a{color:#FFF;} a:hover{color: #6FFF2C;}
+a{color:#FFF;} a:hover{color: #111;}
 
 .header {
+display: none;
 position: absolute;
 top: 0;
 right: 0;
@@ -68,6 +70,7 @@ border-bottom: 1px solid #167A16;
 .header #title {padding: 18px;font-size: 17px;color: #FFF;font-family: "Arial";width: 150px;text-align: center;}
 
 .footer {
+display: none;
 position: absolute;
 bottom: 0;
 right: 0;
@@ -89,4 +92,14 @@ floaT: left;
 .footer #version{
 display: inline-block;
 float: right;
+}
+
+.blur {
+z-index: -1;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background-color: rgba(24, 91, 102, 0.88);
 }
