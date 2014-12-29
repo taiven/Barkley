@@ -324,12 +324,13 @@
 										$TempMilestone = new Milestone();
 										$TempMilestone->accountID = $userid;
 										$TempMilestone->milestoneID = $_GET['milestone'];
+										$TempMilestone->projectID = $_GET['project'];
 										$TempMilestoneResults = $TempMilestone->Delete();
 
 										if($TempMilestoneResults){
-											//echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$_GET['project']&error=success&error_text=Your+Milestone+<b>$selected_milestone</b>+has+been+deleted+successfully.'>";
+											echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$TempMilestone->projectID&error=success&error_text=Your+Milestone+<b>$selected_milestone</b>+has+been+deleted+successfully.'>";
 										}else{
-											//echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$_GET['project']&error=danger&error_text=Your+Milestone+<b>$selected_milestone</b>+could+not+be+deleted+an+error+occured.'>";
+											echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=milestones&project=$TempMilestone->projectID&error=danger&error_text=Your+Milestone+<b>$selected_milestone</b>+could+not+be+deleted+an+error+occured.'>";
 										}
 							}
 						}
@@ -394,7 +395,7 @@
 												if($TempMeetingResults){
 												echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=meetings&project=$TempMeeting->projectID&error=success&error_text=Your+Meeting+has+been+scheduled+successfully.'>";
 											}else{
-												echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=meetings&project=$TempMeeting->projectID&error=danger&error_text=Your+Milestone+could+not+be+scheduled+an+error+occured.'>";
+												echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=meetings&project=$TempMeeting->projectID&error=danger&error_text=Your+Meeting+could+not+be+scheduled+an+error+occured.'>";
 											}
 										}
 									}

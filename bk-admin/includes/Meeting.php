@@ -53,8 +53,6 @@ class Meeting{
 					$date = strtotime($date);
 					$Meeting->meetingDate = date("F j,Y", $date);
 					
-					//$tasks = mysqli_query($DataConnect,"SELECT `subtask_id`, COUNT(subtask_id) FROM `subtasks` WHERE `task_id` = '".$row ['task_id']."'");
-					//$Task->projectSubTasks = $tasks->fetch_row()[1];
 					$Meetings[] = $Meeting;
 			}
 		return $Meetings;
