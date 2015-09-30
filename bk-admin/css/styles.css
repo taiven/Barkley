@@ -9,6 +9,14 @@ font-family: "Source Sans Pro";
 font-size: 14px;
 }
 
+a{
+    text-decoration: none;
+    color: #222;
+}
+a:hover{
+    color: #CBE86B;
+}
+
 #header{
     width: 100%;
     height: 70px;
@@ -110,6 +118,10 @@ background: #CBE86B;
 .branch td{border: none;border-top: 1px solid #EEE;}
 .branch th{color: #8AA923;letter-spacing: 1.5px;}
 
+.myproject:hover{
+    background: #8AA923;
+    color: #FFF;
+}
 
 .active{display: block;}
 
@@ -119,7 +131,7 @@ footer{
     width: 100%;
     height: 40px;
     background: #FFFFFF;
-    border-top: 2px solid #CBE86B;
+    /*border-top: 2px solid #CBE86B;*/
     line-height: 40px;
     color: #F2E9E1;
 }

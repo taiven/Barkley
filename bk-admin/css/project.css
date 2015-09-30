@@ -4,13 +4,14 @@
     background: #8AA923;
     top: 0;
     left: 0;
+    height: 80%;
     width: 10%;
     padding: 30px 20px;
     list-style: none;
     z-index: 1;
-    background-image: url('../img/barkley-symbol.png');
+    /*background-image: url('../img/barkley-symbol.png');
     background-size: 85% 100%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 
 #menu li{
@@ -23,4 +24,12 @@
     color: #444;
     text-decoration: none;
     letter-spacing: 1.5px;
+}
+
+
+#sort{
+    display: none;
+}
+#search{
+    display: none;
 }

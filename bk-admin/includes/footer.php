@@ -6,7 +6,7 @@
 <!-- </div>
     <!-- Le javascript
     ================================================== -->
-	<script type="text/javascript" src="js/chat.js"></script>
+	<!--<script type="text/javascript" src="js/chat.js"></script>-->
 	<script type="text/javascript" src="js/developer.js"></script>
     <!-- Placed at the end of t.,,><` m m  nl;+. .he docu.ment so the pages load faster --> 
 

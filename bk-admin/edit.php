@@ -1,12 +1,5 @@
 <?php include("includes/header.php");?>
 			<?php error_reporting (E_ALL); ?>
-         <ul class="nav nav-tabs" style="margin-left:70px;">
-			<li><a href="?tab=overview&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-dashboard icon"></span> Overview</a></li>
-			<li><a href="?tab=tasks&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list-alt icon"></span> Tasks</a></li>
-			<li><a href="?tab=milestones&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list icon"></span> Milestones</a></li>
-			<li><a href="?tab=meetings&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-tree-conifer icon"></span> Meetings</a></li>
-			<!--<li><a href="?tab=timer&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-time icon"></span>Timer</a></li>-->
-			</ul>
 			<?php error_reporting(0); if($_GET['error']){ ?><div class='alert alert-<?php error_reporting(0); if($_GET['error']){echo $_GET['error'];}else echo "danger";?>'>
 			   <button type='button' class='close' data-dismiss='alert'>&times;</button>
 			   <p><?php if($_GET['error']){echo $_GET['error_text'];}else echo "We apologize, This feature has been disabled and is undergoing maintenance. Please check again later.";?></p>
@@ -30,10 +23,19 @@
 						echo "<META http-equiv='refresh' content='0;URL=projects.php?project=$project&error=danger&error_text=You+do+not+have+access+to+this+project.'>";
 					}
 					?>
-			<div id="content" class="tab-content">
-				<div class="tab-pane <?php if($_GET['tab'] == "overview"){echo "active";}?>" id="overview">
-					<div class="container">
-						<h3>Overview</h3>
+		<div id="tree">
+            <nav id="menu">
+                <li><a href="?tab=overview&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-dashboard icon"></span> Overview</a></li>
+                <li><a href="?tab=tasks&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list-alt icon"></span> Tasks</a></li>
+                <li><a href="?tab=milestones&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-list icon"></span> Milestones</a></li>
+                <li><a href="?tab=meetings&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-tree-conifer icon"></span> Meetings</a></li>
+                <!--<li><a href="?tab=timer&project=<?php echo $_GET['project'];?>"><span class="glyphicon glyphicon-time icon"></span>Timer</a></li>-->
+            </nav>
+            <div id="bark">
+				<div class="branch <?php if($_GET['tab'] == "overview"){echo "active";}?>" id="overview">
+                    <div class="leaf">
+                        <h3 id="title">Overview</h3>
+                    </div>
 						<table class="table">
 							<tr>
 								<th>Project Name</th>
@@ -58,40 +60,40 @@
 								}
 							?>
 						</table>
-					</div>
 				</div>
 				
-				<div class="tab-pane <?php if($_GET['tab'] == "tasks"){echo "active";}?>" id="tasks">
-					
-					<ul class="nav nav-tabs" style="margin-left:70px;">
-						<li><a href="#new_task" data-toggle="modal"><span class="glyphicon glyphicon-folder-close icon"></span> New Task</a></li>
-						<li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="#edit_task" <?php if($_GET['task']){ echo "data-toggle=\"modal\"";}  ?>><span class="glyphicon glyphicon-edit icon"></span> Edit Task</a></li>
-						<li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="edit.php?tab=tasks&project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>&action=delete_task"><span class="glyphicon glyphicon-remove icon"></span> Delete Task</a></li>
-						<li class="navbar-text">Current Task Selected:<b>
-						<?php
-						$current_task = $_GET['task'];
-						if($current_task){
-						$DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
-						$query = mysqli_query($DataConnect, "SELECT `task_title` FROM `tasks` WHERE task_id = $current_task");
-						$selected_task = $query->fetch_row()[0];
-						echo $selected_task;}else
-						echo "None";
-						?></b></li>
-						<li class="pull-right"><a href="?tab=subtasks&project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>">Subtasks</a></li>
-					</ul>
-					<div class="container">
-					<h3>Tasks</h3>
-					 <table class="table">
-							<tr>
-								<th>Task Title</th>
-								<th>Task Details</th>
-								<th>Assigned To</th>
-								<th>Assigned By</th>
-								<th>Deadline</th>
-								<th>Select</th>
-							</tr>
-						<?php 
-						
+				<div class="branch <?php if($_GET['tab'] == "tasks"){echo "active";}?>" id="tasks">
+					<div class="leaf">
+                        <h3 id="title">Tasks</h3>
+                        <nav id="sort">
+                            <li><a href="#new_task" data-toggle="modal"><span class="glyphicon glyphicon-folder-close icon"></span> New Task</a></li>
+                            <li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="#edit_task" <?php if($_GET['task']){ echo "data-toggle=\"modal\"";}  ?>><span class="glyphicon glyphicon-edit icon"></span> Edit Task</a></li>
+                            <li class="<?php error_reporting(0); if(!$_GET['task']){ echo "disabled";}?>"><a href="edit.php?tab=tasks&project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>&action=delete_task"><span class="glyphicon glyphicon-remove icon"></span> Delete Task</a></li>
+                            <li class="navbar-text">Current Task Selected:<b>
+                            <?php
+                            $current_task = $_GET['task'];
+                            if($current_task){
+                            $DataConnect = mysqli_connect('localhost','barkley','barkley','barkley');
+                            $query = mysqli_query($DataConnect, "SELECT `task_title` FROM `tasks` WHERE task_id = $current_task");
+                            $selected_task = $query->fetch_row()[0];
+                            echo $selected_task;}else
+                            echo "None";
+                            ?></b></li>
+                            <li class="pull-right"><a href="?tab=subtasks&project=<?php echo $_GET['project'];?>&task=<?php echo $_GET['task'];?>">Subtasks</a></li>
+                        </nav>
+                        <input id="search" type="text" placeholder="Search Projects" value=""/>
+                    </div>
+
+					<table class="table">
+                        <tr>
+							<th>Task Title</th>
+                            <th>Task Details</th>
+							<th>Assigned To</th>
+							<th>Assigned By</th>
+							<th>Deadline</th>
+							<th>Select</th>
+						</tr>
+					<?php 
 						$Tasks = new Task();
 						if($Tasks){$Tasks_Info = $Tasks->ReturnAll($_GET['project']);}
 						
@@ -180,11 +182,11 @@
 							}
 						}
 						
-						?>
-						    </table>
-					</div>
+					?>
+                    </table>
 				</div>
-					<div class="tab-pane <?php if($_GET['tab'] == "subtasks"){echo "active";}?>" id="subtasks">
+					
+                <div class="branch <?php if($_GET['tab'] == "subtasks"){echo "active";}?>" id="subtasks">
 						<?php $project = $_GET['project'];?>
 							<?php if($_GET['tab'] == 'subtasks'){if($_GET['task'] == null){echo "<META http-equiv='refresh' content='0;URL=edit.php?tab=tasks&project=$project&error=danger&error_text=You+did+not+select+a+task.'>";}}?>
 						<ul class="nav nav-tabs" style="margin-left:70px;">
@@ -254,9 +256,9 @@
 						 */ ?>
 							</table>
 						</div>
-					</div>
+                </div>
 				
-				<div class="tab-pane <?php if($_GET['tab'] == "milestones"){echo "active";}?>" id="milestone">
+				<div class="branch <?php if($_GET['tab'] == "milestones"){echo "active";}?>" id="milestone">
 						<ul class="nav nav-tabs" style="margin-left:70px;">
 						<li><a href="#new_milestone" data-toggle="modal"><span class="glyphicon glyphicon-folder-close icon"></span> New Milestone</a></li>
 						<li class="<?php error_reporting(0); if(!$_GET['milestone']){ echo "disabled";}?>"><a href="#edit_milestone" data-toggle="modal"><span class="glyphicon glyphicon-edit icon"></span> Edit Milestone</a></li>
@@ -339,7 +341,7 @@
 					</div>
 				</div>
 				
-				<div class="tab-pane <?php if($_GET['tab'] == "meetings"){echo "active";}?>" id="meetings">
+				<div class="branch <?php if($_GET['tab'] == "meetings"){echo "active";}?>" id="meetings">
 				<ul class="nav nav-tabs" style="margin-left:70px;">
 					<li><a href="#new_meeting" data-toggle="modal"><span class="glyphicon glyphicon-folder-close icon"></span> New Meeting</a></li>
 					<li class="<?php error_reporting(0); if(!$_GET['meeting']){ echo "disabled";}?>"><a href="#edit_meeting" data-toggle="modal"><span class="glyphicon glyphicon-edit icon"></span> Edit Meeting</a></li>
@@ -422,7 +424,7 @@
 					</div>
 				</div>
 				
-				<div class="tab-pane <?php if($_GET['tab'] == "timer"){echo "active";}?>" id="timer">
+				<div class="branch <?php if($_GET['tab'] == "timer"){echo "active";}?>" id="timer">
 						<ul class="nav nav-tabs" style="margin-left:70px;">
 						<li><a id="startPause" href="#" onclick="startPause();"><span class="glyphicon glyphicon-play icon"></span> Start Timer</a></li>
 						<li><a id="reset" href="#" onclick="reset();"><span class="glyphicon glyphicon-refresh icon"></span> Clear Timer</a></li>
@@ -433,6 +435,6 @@
 					<p id="output"></p>
 					</div>
 				</div>
-																		<!-- End Tabs -->
-			</div>
+            </div>														<!-- End Tabs -->
+		</div>
 <?php include("includes/footer.php");?>

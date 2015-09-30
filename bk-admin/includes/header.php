@@ -30,12 +30,12 @@ if(!$cemail && !$userid){
         <link type="text/css" rel="stylesheet" media="all" href="site/css/screen_ie.css" />
         <link type="text/css" rel="stylesheet" media="all" href="site/css/ie_styles.css" />
         <![endif]-->
-         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!--<script>
         if(typeof(w)=="undefined")
         {
         w=new Worker("js/chat.js");
-        }</script>
+        }</script>-->
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,7 +51,7 @@ if(!$cemail && !$userid){
             <ul>
                 <li><a href="index.php">Dashboard</a>
                 <!--<li><a href="activity.php">Activity</a></li>-->
-                <li><a href="projects.php?tab=projects">Projects</a></li>
+                <li><a href="projects.php?tab=myprojects">Projects</a></li>
                 <!--<li><a href="database.php?tab=overview"> Database</a></li>-->
                 <!--<li><a href="community.php"> Community</a></li>-->
                 <li><a href="javascript:void(0)" onclick="javascript:chatWith(<?php echo $username;?>)"><?php echo $username;?></a></li>

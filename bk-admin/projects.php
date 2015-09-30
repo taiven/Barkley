@@ -4,7 +4,7 @@
             <li><a href="?tab=projects"><span class="glyphicon glyphicon-home icon"></span> Projects</a></li>
                 <li><a href="?tab=myprojects"><span class="glyphicon glyphicon-user icon"></span> My Projects</a></li>
                 <li><a data-toggle="modal" href="#new_project"><span class="glyphicon glyphicon-folder-close icon"></span> New Project</a></li>
-                <li class="<?php error_reporting(0); if(!$_GET['project']){ echo "disabled";}?>"><a href="edit.php?tab=overview&project=<?php error_reporting(0); echo $_GET['project'] ?>"><span class="glyphicon glyphicon-folder-open icon"></span> Edit Project</a></li>
+                <!--<li class="<?php error_reporting(0); if(!$_GET['project']){ echo "disabled";}?>"><a href="edit.php?tab=overview&project=<?php error_reporting(0); echo $_GET['project'] ?>"><span class="glyphicon glyphicon-folder-open icon"></span> Edit Project</a></li>-->
                 <li class="<?php error_reporting(0); if(!$_GET['project']){ echo "disabled";}?>"><a href="projects.php?tab=projects&project=<?php echo $_GET['project'];?>&action=archive_project"><span class="glyphicon glyphicon-remove icon"></span> Archive Project</a></li>
                 <!--<li class="navbar-text">Current Project Selected: <b><?php if($_GET['project']){
                             $current_project = $_GET['project'];
@@ -19,16 +19,17 @@
 			   <p><?php if($_GET['error']){echo $_GET['error_text'];}else echo "We apologize, This feature has been disabled and is undergoing maintenance. Please check again later.";?></p>
 			</div><?php }?>
         <div id="bark">
+
 			<div class="branch <?php if($_GET['tab'] == "projects"){echo "active";}?>">
                 <div class="leaf">
                     <h3 id="title">Projects</h3>
-                    <!--<nav id="sort">
+                    <nav id="sort">
                         <li>All</li>
                         <li>In House</li>
                         <li>Clients</li>
                         <li>Archived</li>
                     </nav>
-                    <input type="text" placeholder="Search Projects" value=""/>-->
+                    <input id="search" type="text" placeholder="Search Projects" value=""/>
                 </div>
                 <table class="table">
                     <tr>
@@ -104,16 +105,16 @@
                         <li>Clients</li>
                         <li>Archived</li>
                     </nav>
-                    <input type="text" placeholder="Search Projects" value=""/>
+                    <input id="search" type="text" placeholder="Search Projects" value=""/>
                 </div>
                 <table class="table">
                     <tr>
+                        <th></th>
                         <th>Project Name</th>
                         <th>Start</th>
                         <th>Tasks</th>
                         <th>Deadline</th>
                         <th>Description</th>
-                        <th>Select</th>
                     </tr>
                      <!-- Edit with PHP -->
                 <?php
@@ -128,13 +129,14 @@
                         foreach ($Project_Results as $Project){
                             //echo "Returned Project <b>\"".$Project->projectName ."\"</b> from your database.</br>";
                             if($Project->projectArchived == 0){
-                                echo "<tr>
+                                echo "
+                                <tr class='myproject'>
+                                <td><a class='btn btn-primary' href='edit.php?tab=overview&project=".$Project->projectID."'>Select</a></td>
                                 <td>".$Project->projectName."</td>
                                 <td>".$Project->projectStart."</td>
                                 <td>".$Project->projectTasks."</td>
                                 <td>".$Project->projectDeadline."</td>
                                 <td>".$Project->projectDescription."</td>
-                                <td><a class='btn btn-primary' href='?tab=myprojects&project=".$Project->projectID."'>Select</a></td>
                                 </tr>";
                             }
                         }
