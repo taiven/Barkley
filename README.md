@@ -1,7 +1,4 @@
-Barkley Project Management System
+Barkley
 ===========
 
-The Open Source Project Management System
-
-Barkley-PMS is a project management system built for the purpose of organization and collaboration between team members.
-Barkley has came as far a being a single website able to be incorporated into any part of an existing website.
+Barkley is a simple project management system. Its was planted as an Idea and grew into a full grown tree.
