@@ -1,10 +1,26 @@
 
-.nav-tabs{
-margin-left: 70px;
-width: 86.8%;
+#menu{
+    position: absolute;
+    background: #8AA923;
+    top: 0;
+    left: 0;
+    width: 10%;
+    padding: 30px 20px;
+    list-style: none;
+    z-index: 1;
+    background-image: url('../img/barkley-symbol.png');
+    background-size: 85% 100%;
+    background-repeat: no-repeat;
 }
 
-h3, .h3 {
-font-size: 20px;
-margin-bottom: 10px;
+#menu li{
+    margin-bottom: 7%;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menu li a{
+    color: #444;
+    text-decoration: none;
+    letter-spacing: 1.5px;
 }

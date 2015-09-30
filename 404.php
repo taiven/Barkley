@@ -11,15 +11,15 @@ require('bk-config.php');
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Barkley</title>
+    <title>Plant a Tree</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link rel="icon" href="bk-admin/img/barkley-symbol.png" sizes="16x16" type="image/png">
-    <link href="bk-includes/css/normalize.css" rel="stylesheet">
-    <link href="bk-includes/css/styles.css" rel="stylesheet">
+     <link rel="icon" href="bk-admin/img/barkley-symbol.png" sizes="16x16" type="image/png">
+    <link href="/development/Barkley/bk-includes/css/normalize.css" rel="stylesheet">
+    <link href="/development/Barkley/bk-includes/css/styles.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -29,7 +29,7 @@ require('bk-config.php');
   <body>
 	
 	<header id="header">
-		<div id="title"><a href="index.php">Barkley</a></div>
+		<div id="title"><a href="/development/Barkley/index.php">Barkley</a></div>
         <nav>
             <ul>
                 <li><a href="#About">About</a></li>
@@ -82,33 +82,9 @@ require('bk-config.php');
 	}	
     ?>
     
-    <div id="C2A">
-        <h2 class="title">Barkley</h2>
-        <span class="subtitle">We nature Project Management</span>
-        
-        <div class="Attention">
-            <p>Is this your problem?</p>
-             <p>I am a possible solution</p>
-        </div>
-        
-         <div class="Interest">
-            <p>Where you are</p>
-            <p>Where you could be</p>
-            <p>How to get there</p>
-            
-            <p>Why Barkley exist</p>
-            <p>How Barkley exists today</p>
-        </div>
-        
-        <div class="Desire">
-           <p>Testimonials</p>
-           <p>Our Customers</p>
-           <p>We care</p>
-        </div>
-        <div class="Action">
-            <p>Plant a Barkley(Purchase)</p>
-            <p>Build a Table(Cancellation)</p>
-        </div>
+    <div id="C2A" class="NotFound">
+        <h2 class="title">Your Tree couldn't be found.</h2>
+        <span class="subtitle">Try planting a seed and growing more trees.</span>
     </div>
     <!-- Le javascript
     ================================================== -->
