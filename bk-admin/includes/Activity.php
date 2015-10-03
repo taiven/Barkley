@@ -1,10 +1,10 @@
 <?php
 class Activity{
 	
-	public accountID;
-	public action;
-	public type;
-	public id;
+	public $accountID;
+	public $action;
+	public $type;
+	public $id; 
 	
 	public static function Log(){
 		if($this->action == "ADD"){

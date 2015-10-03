@@ -1,9 +1,9 @@
 <?php 
 class SubTask{
 	
-	private $_projectID;
-	private $_taskID;
-	private $_subtaskID;
+	private $_projectID = null;
+	private $_taskID = null;
+	private $_subtaskID = null;
 	
 	public function Create(){}
 	public function Update(){}
